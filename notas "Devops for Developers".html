@@ -1,0 +1,1513 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 5.5.1 (402628)"/><meta name="author" content="Oscar Rubio"/><meta name="created" content="2014-03-02 18:25:53 +0000"/><meta name="updated" content="2014-09-08 21:45:18 +0000"/><title>notas "Devops for Developers"</title></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<div style="text-align: center;"><span style="color: rgb(255, 0, 0);"><strong>parte 1 fundamentals</strong></span></div>
+<div style="text-align: center;"><span style="color: rgb(255, 0, 0);"><strong>Capitulo 1 Comenzando con DevOps para desarrolladores</strong></span></div>
+<div><br clear="none"/></div>
+<div>El termino “desarrollador” no solo se refiere a testers, programadores y QA.</div>
+<div>El enfoque “one team approach” también incluye en esta definición a expertos de operaciones que desarrollan scripts o “infrastructure as code”, administradores de bases de datos y redes.</div>
+<div><br clear="none"/></div>
+<div>Los valores de DevOps:</div>
+<div>
+<ul>
+<li>Cultura: La personas sobre los procesos y las herramientas, el software esta hecho por y para personas.</li>
+<li>Automatización: La automatización es esencial para obtener feedback rápido.</li>
+<li>Medición: DevOps busca un camino especifico para mediciones. Calidad e incentivos compartidos son críticos.</li>
+<li>Compartir: Crea una cultura donde las personas comparten las ideas, procesos y herramientas.</li>
+</ul>
+<div><br clear="none"/></div>
+<div>Conflictos entre development y operations:</div>
+</div>
+<div>
+<ul>
+<li>Necesidad de cambio: Development produce cambios (nuevas características, soluciones a bugs, etc) que deben ser llevados a producción.</li>
+<li>Miedo al cambio: Una vez que el software es liberado, Operations desea evitar realizar cambios al software para asegurar condiciones de estabilidad a los sistemas productivos.</li>
+</ul>
+<div><br clear="none"/></div>
+<span style="text-decoration: underline;">Expandiendo el uso de Agile</span></div>
+<div>Por lo general los proyectos tienen los siguientes pasos:</div>
+<div>
+<ul>
+<li>Inicio (Inception): La visión del sistema se desarrolla, los alcances del proyecto se definen y el negocio se justifica.</li>
+<li>Elaboración: Se colectan y definen requerimientos, se identifican los riesgos y la arquitectura del sistema se comienza a definir.</li>
+<li>Construcción: El software es construido y testeado.</li>
+<li>Transición: El software es entregado al usuario.</li>
+<li>Operaciones: El software es disponible para el usuario y mantenido por el equipo de Ope-rations</li>
+</ul>
+<div>Agile a ayudado a unir los roles de programadores, testers y QA pero no incluye a Operaciones.</div>
+</div>
+<div><br clear="none"/></div>
+<div>En algunas organizaciones DevOps se expande a RRHH y finanzas, ya que es necesario que las personas tengan las habilidades blandas necesarias para trabajar con DevOps y las métricas de medición cambian.</div>
+<div>La base para el éxito de DevOps es una cultura de confianza y un sentimiento de unión y hermandad. en DevOps el concepto de compartir también es muy importante.</div>
+<div><br clear="none"/></div>
+<div><span style="text-decoration: underline;"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;">Que es DevOps?</span></div>
+<div>DevOps apunta a mejorar la comunicación de los equipos Developers y Operations con el fin de resolver problemas como el miedo al cambio, deployments complicados, etc.</div>
+<div>También apunta a compartir objetivos e incentivos, así como también compartir procesos y herramientas.</div>
+<div><br clear="none"/></div>
+<div><span style="text-decoration: underline;"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;">Que no es DevOps?</span></div>
+<div>DevOps no es un termino para marketing.</div>
+<div>DevOps no permite que developers trabajen en sistemas productivos, no es un ambiente “abierto” en donde se abran procesos importantes de producción a los developers.</div>
+<div>DevOps no es un nuevo departamento/Area en la organización.</div>
+<div>DevOps no es cargo nuevo que reemplace a expertos developers u operations.</div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div>Caracteristicas que deben evolucionar:</div>
+<div>
+<ul>
+<li>Culto a los heroes: El equipo es nada y los roles individulaes son la regla. Si un desarrollador no documenta su trabajo y este es de mala calidad, se requerirá ajustes y soluciones de bugs que solo pueden ser realizadas por el "heroe" ya que no se transmitio o documentó el conocimiento.</li>
+<li>Enfasis en los titulos/cargos: Todos tienen un rol o cargo, esto es la regla! El cargo no asegura que las personas tengas las habilidades tecnicas o blandas requeridas para realizar el trabajo asignado. ¿Cual es el factor de decisión para promover una persona a un nuevo cargo?</li>
+<li>Responsabilidades en las sombras: Un cierto cargo tiene responsabilidades claras y definidas. Las personas tienden a evitar cumplir sus responsabilidades. Por lo general estas responsabilidades se ocultan realizando trabajo que no corresponde o dandole prioridad a proyectos menores para evitar foco en lo importante.</li>
+<li>Preferir un plan a la planificación: Los proyectos de planean pero no se planifican, planificar es el arte de reajustar el plan original. Una vez que el plan existe en una carta Gantt, el objetivo es cumplir con los plazos de esta y ya no es generar software/servicio que entrege valor a los clientes de una manera eficiente. Esto ayuda a la creación de castillos en el aire.</li>
+</ul>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div>Development y Operations</div>
+<div>La situación actual de trabajo conlleva a barreras organizacionales y culturales que se traducen en:</div>
+<div>
+<ul>
+<li>Equipos separados: Con suerte existiran equipo separados, la mayoria de las veces solo son grupos aislados trabaando por metas individuales. Esto acentúa la posición de cada equipo y la busqueda de metas e intereses personales. Lamentablemente muchos equipos individulaes no cubren a un equipo unico con objetivos y metas unificadas.</li>
+<li>No hay un lenguaje comun: Equipos y roles especializados usan un lenguaje que solo es comodo para ellos, esto tambien limita la comprensión con clientes, todo esto se traduce en malentendidos entre las personas y los clientes.</li>
+<li>Miedo: Lo que hacen otros esta malo y sus actividades pueden impactar negativamente a mi trabajo. Las personas son reacias a cambiar los habitos a menos que se demuestre que la mueva manera de hacer las cosas es la adecuada.</li>
+</ul>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div>En las metodologias agiles, developers, testers y QA trabajan juntos pero Operations no es incluido.</div>
+<div>Ante este escenario, operations por lo general es culpado de:</div>
+<div>
+<ul>
+<li>Conflictos durante el deployment: La liberación del software debe ser rapida o el sistema esta abajo. Ante este escenario Operations debe reaccionar rapido y no tiene contexto del deployment como si lo tiene el equipo agile.</li>
+<li>Conflictos respecto al performance: Problemas de rendimiento de la aplicación pueden generar una serie de conflictos, nuevo desarrollo (parches), volver a testear, etc. Ante esto operations nuevamente no tiene la capacidad de reacción necesaria al no tener el suficiente contexto del problema. Los ambientes de testing no pueden replicar el problema de performance por lo que luego del parchado, el paso a producción aún es una incognita y no se sabe si relamente el problema de performance fue solucionado.</li>
+<li>Conflictos despues del deployment: Mas usuarios de los esperados estan utilizando la aplicación, el software deja de responder. Por lo general se culpa a DBAs, el equipo de network o Sysadmin. Cual el RCA encuentra la causa ya es demasiado tarde y los usuarios perdieron la confianza en la aplicación.</li>
+<li>Operations como cuello de botella: El equipo agile funciona de manera optima por lo que estan generando entregables de manera periodica, como operations no tiene contexto de estos desarrollos se trnasforma en un cuello de botella al estar reticente a cambios de manera periodica en los ambientes productivos sin la información necesaria.</li>
+</ul>
+<div><br clear="none"/></div>
+<div style="text-align: center;"><span style="color: rgb(255, 0, 0);"><strong>capitulo 2 Introducción a DEVOPS</strong></span></div>
+<div><br clear="none"/></div>
+</div>
+<div>Devops se centra en fortalecer aspectos interpersonales, para esto se requieres pre-requisitos minimos como:</div>
+<div>
+<ul>
+<li>Respeto por las otras personas</li>
+<li>Compromiso a objetivos compartidos</li>
+<li>Responsabilidad colectiva (collective ownership).</li>
+<li>Valores compartidos.</li>
+</ul>
+<div><br clear="none"/></div>
+<div>Uno de los objetivos basicos es que los expertos compartan sus habilidades y experiencia, la idea es que todo el equipo tenga al menos una noción basica de todo el pipeline del producto/servicio.</div>
+<div>La idea es resolver los problemas colaborativamente, si un servicio se cae, todos deberian saber los procedimientos basicos para diagnosticar y solucionar el problema.</div>
+<div>Para esto, el <strong><em>entrenamiento y colaboración efectiva</em></strong> son criticos.</div>
+<div><br clear="none"/></div>
+<div>DevOps esta basado fuertemente en la automatización de procesos con las herramientas apropiadas.</div>
+<div>Codigo y scripts deben estar alojados en sistemas de control de versionamiento (SCV).</div>
+<div>DevOps considera como codigo o scripts a lo siguiente:</div>
+<div>
+<ul>
+<li>Codigos y scripts para construir la aplicación</li>
+<li>Codigos y scripts para ejecutar pruebas unitarias a la aplicación.</li>
+<li>Codigos y scripts para aceptación de la aplicación.</li>
+<li>Codigos y scripts para deployar la aplicación.</li>
+<li>Codigos y scripts para configurar la aplicación para distintos ambientes objetivos.</li>
+<li>Codigos y scripts para programar los atributos o comportamiento del ambiente objetivo.</li>
+</ul>
+<div>En este ultimo ulitmo punto es donde herramientas DSL (domain specific languaje) como Puppet o Chef, pueden ser utilizadas para describir atributos del ambiente, finalmente este codigo se almacena en un SCV como Git.    Esto trae los siguientes beneficios:</div>
+<div>
+<ul>
+<li>Descipción abstracta de las maquinas utilizando DSL mientras se pueden utilizar scripts para otras tareas, las herramientas DSL describen el comportamiento de un ambiente/maquina.</li>
+<li>Descripción declarativa del ambiente (como quiero que sea el ambiente) siempre nos llevará a tener el mismo resultado.</li>
+<li>Manejo del codigo con un SCV, siempre estará disponible y no es necesario realizar ajustes maquina por maquina.</li>
+<li>Sincronización de ambientes utilizando SVC y sistemas de provisioning automatico.    Servidores de integración continua como Jenkins detectan todos los cambios realizados a un SCV, luego la herramienta administradora de configuraciones (por ejemplo Puppet) asegura que las maquinas correspondientes se estan comportando como esta descrito en el SCV.     <span style="font-size: 14px;">El uso de herramientas como Puppet, Jenkins y Vagrant pueden manejar configuraciones completas de un servidor, incluyendo virtualización, configuraciones, permisos, etc.</span></li>
+<li><span style="font-size: 14px;">Compartir scripts (por ejemplo Puppet manifests) es extremadamente sencillo con herramientas de SCV.</span></li>
+</ul>
+<div><span style="font-size: 14px;">Todos estos puntos contribuyen a que tanto developers como operations puedan levantar y configurar sus ambientes de testing, producción, etc. rapidamente y de manera unificada.</span></div>
+<div><br clear="none"/></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);">Capitulo 3 CONSTRUYENDO DEVOPS POR BLOQUES</span></strong></div>
+<div><br clear="none"/></div>
+<div><span style="font-size: 14px;"><strong>Mediciones y Métricas</strong></span></div>
+<div><span style="font-size: 14px;">Las métricas tienes que ser lo suficientemente significativas para incluir a todos los participantes, tanto en el proceso de development con en el proceso de delivery.</span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div><span style="font-size: 14px;">Las métricas clásicas están fuertemente basadas en números.</span></div>
+<div><span style="font-size: 14px;">Esto da la ilusión de que al cuantificar algo, esto se entiende y controla.     Por lo general esto se traduce en malentendidos, o incluso peor, incentivos perversos que rompen el trabajo en equipo y afectan el comportamiento de las personas.</span></div>
+<div><span style="font-size: 14px;">Estas métricas están constantemente monitoreando los equipos sin entregar beneficios comparables al esfuerzo realizado.</span></div>
+<div><span style="font-size: 14px;">Un enfoque “puntos de función” también puede ser erróneo, se puede medir el avance del desarrollo pero no se puede analizar el valor entregado por el equipo.</span></div>
+<div><span style="font-size: 14px;">Uno de los errores de las métricas clásicas es el abuso en la comparación de las personas o equipos.</span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+</div>
+</div>
+<div><br clear="none"/></div>
+<div>Enfoque agil a las metricas</div>
+<div>Solo una característica que entregue valor y maneras de mejorar un proceso son consideradas “soluciones”.</div>
+<div>Agile se enfoca en el valor mas que en metricas especificas traducidas a numeros.</div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div>Calificando cambios</div>
+<div>Los equipos ágiles no distinguen entre bugs, mejoras o solicitudes de cambio.     Se usa una unidad general llamada “cambio para monitorear progreso.”</div>
+<div>Esto porque “cambio” es una unidad validad tanto para developers como para operations.     Al reducir los diferentes tipos de cambios a “cambio” es mas fácil la cooperación entre development y operations.     Luego de realizar el cambio, si surge un problema este es notificado, identificado y resuelto sin conflictos entre developers y operations.</div>
+<div>En la actualidad se manejan los términos de TTR y SLA.     Estos son inútiles si no se considera software, middleware e infraestructura como un todo al realizar un cambio.<br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><strong>Mejorando el flujo de caracteristicas</strong></div>
+<div>Es importante tener claro los siguientes conceptos.</div>
+<div>
+<ul>
+<li>Tiempo del ciclo: Es el periodo desde que el cliente solicita un producto hasta que entra en producción y comienza a generar valor para el cliente y cobro por parte del equipo.     La acumulación de los ciclos de los subprocesos en la operación determinará el tiempo en el delivery del producto solicitado por el cliente.<br clear="none"/></li>
+<li>Lead time, takt time and throughput: lead time se refiere a la cantidad de tiempo requerida desde que llega un requerimiento hasta que se completa la orden.    Takt time se refiere a la cadencia del proceso, como por ejemplo  liberar código cada 24 horas.    Throughput se refiere a la cantidad de la salida y a la tasa de salida.</li>
+</ul>
+<div><br clear="none"/></div>
+<strong>Mejorar y acelerar el delivery</strong></div>
+<div>Deployments frecuentes ayudan a que el desarrollo se mantenga simple y los cambios son mas enfocados.   Se reduce el riesgo de deployments ya que los cambios son pocos y el proceso de deployment se practica reiteradas veces.      Se reduce la probabilidad de hacer rollback, y de ser necesario serán rápidos y con muy poco funcionalidad perdida.<br clear="none"/>
+<br clear="none"/></div>
+<div>Con la liberación automática se reduce el riesgo de la liberación, el ideal es automatizar integración, build, packaging y el deployment.    Esto evita errores por tareas repetitivas y ahorra tiempo del equipo para actividades enfocadas a entregar valor.<br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><strong>Errores o trampas de la automatización</strong></div>
+<div>Se debe automatizar el 100% del proceso?     Hay ciertos aspectos que es importante considerar al momento de automatizar un proceso.</div>
+<div>
+<ul>
+<li>Ley del costo marginal: En la mayoria de los casos no es preferible automatizar todo, las mejoras de codigo son continuas y tambien se necesita mantención de los desarrollos.     Lo mismo ocurre con la automatización de un pipeline, nuevos requerimientos o cambios pueden requerir cambios en la configuración de nuestro sistema de automatización.</li>
+<li>Errores verbo/sustantivo: Ciertas actividades del proyecto se pueden confundir con automatización.   Por ejemplo el testing es una actividad (verbo) pero no debe ser confundido con un proceso automatizado (sustantivo).     Es cierto que se pueden automatizar ciertas partes pero es imposible automatizar el 100% del testing (interfaces de usuario, diseño, etc).</li>
+<li>Paradoja de la automatización: Mientras mas eficiente es la automatización, mas necesaria es la contribución de las personas para mantener este sistema.    Las personas utilizan menos tiempo en mantener el sistema automatizado pero cada intervención se vuelve mas critica.    Si la automatización falla, el pipeline completo puede estar en peligro.</li>
+<li>La ironia de la automatización: Mientras mas confiable es la automatización, mas dificl sera repararla si esta falla.    Esto porque los administradores tendran menos habilidades respecto al detalle de las configuraciones que se encuentran automatizadas.  Netflix soluciono este problema con Chaos Monkey, de esta manera los administradores deben estar constantemente estudiando configuraciones y preparados para el desastre.</li>
+</ul>
+<div>En conclusión la automatización por si sola no otorga beneficios, los procesos a automatizar dben ser dados según las necesidades del negocio.  hay que tener muy claro cuales son los verbos y sustantivos y considerar los costos marginales.     La automatización hace que las personas sean mas valoradas, aunque comunmente se piense lo contrario.</div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+</div>
+<div><span style="text-decoration: underline;"><strong>Incrementos e iteraciones</strong></span></div>
+<div>Una iteración es un mini proyecto que se traduce en un incremento en el software.</div>
+<div>Un incremento es un pequeño pedazo de funcionalidad.  Los incrementos ayudan a contruir software de mejor calidad pieza por pieza.</div>
+<div><br clear="none"/></div>
+<div><span style="text-decoration: underline;">monitoreo a fondo</span></div>
+<div>El monitoreo evita tener incidentes mayores en producción.</div>
+<div>Este se enfoca en disponibilidad (network, procesos, puertos) o en capacidad (memory usage, performance).</div>
+<div>En DevOps lo ideal es trabajar en el desarrollo del producto y las soluciones de de monitoreo en paralelo.</div>
+<div>Al trabajar en el monitoreo durante todo el desarrollo del producto considerando requerimientos funcionales y no funcionales, middleware e infraestructura es mas sencillo mejorar el monitoreo continuamente, capturar errores de monitoreo tempranamente y se asgura que el monitoreo esta alineado con el valor que entregará el producto.</div>
+<div>Herramientas como Nagios, Collectd, Ganglia o Munin son necesarias para un monitoreo de calidad.</div>
+<div>Servicios como Pingdom, New Relic o Datadog proveen "monitoring as a Service" con soluciones en la nube.</div>
+<div><br clear="none"/></div>
+<div><span style="text-decoration: underline;"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;">Desacoplando Deployment y release</span></div>
+<div>Desacoplar el deployment y release mejora y acelera el delivery, lo que es uno de los bloques de de DevOps.</div>
+<div><br clear="none"/></div>
+<div>Branch por abstracción.</div>
+<div>Propone hacer cambios a gran escala incrementalmente.   </div>
+<div>
+<ol>
+<li>Se basa en crear una abstracción de la parte del sistema que requiere un cambio</li>
+<li><span style="font-size: 14px;">Hacer un refactor del resto del sistema para utilizar esta capa de abastracción.   </span></li>
+<li><span style="font-size: 14px;">Continuar codificando y la capa de abstracción delegará al codigo nuevo o antiguo seguún sea necesario.</span></li>
+<li><span style="font-size: 14px;">Remover la implementación antigua</span></li>
+<li><span style="font-size: 14px;">Iterar pasos 3 y 4 hasta remover el codigo antiguo totalmente.   Entregar estas mejoras mientras e continua con la codificación.</span></li>
+<li><span style="font-size: 14px;">Remover la capa de abstracción cuando se haya eliminado totalmente la implementación antigua.</span></li>
+</ol>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;"><span style="font-size: 14px;">Switches de caracteristicas</span></span></div>
+<div><span style="font-size: 14px;">Consiste en liberar el codigo completo a producción pero con switches para decidir que caracteristicas estaran disponibles en tiempo de ejecución.   Para esto por lo general se utilizan archivos de configuración.</span></div>
+<div><span style="font-size: 14px;">Con esta tecnica se puede desarrollar en la misma linea sin utilizar branches y liberar el codigo completo a producción.</span></div>
+<div><span style="font-size: 14px;">Tambien sirve para degradar el servicio elegantemente en caso de sobrecarga, de ser necesario solo se puede dejar funcionando el core  para evitar un problema mayor o si el servicio se cae es facil levantarlo solo con el core de la funcionalidad.</span></div>
+<div><span style="font-size: 14px;">Esto es similar a un concepto llamado "remedation" propuesto por ITIL.</span></div>
+<div><span style="font-size: 14px;">Una contra de esta tecnica es el codigo "sin utilización" en un ambiente productivo, que aún asi podria gererar problemas internamente en la aplicación. </span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;"><span style="font-size: 14px;">Dark Launching</span></span></div>
+<div><span style="font-size: 14px;">Es el deployment de versiones tempranas de funcionalidad de la aplicación sin cubrir el 100% del universo de usuarios.  Esto permite hacer deployments continuos y el subgrupo de usuarios puede encontrar bugs mas facilmente antes de hacer el anuncio oficial del producto.    Esta es una tecnica de bajo riesgo para deployar productos que a la vez se puede mezclar con "switches de caracteristicas".    Si algo falla solo se desabilita esa funcionalidad y no es neceasrio bajar el proyecto de producción.    Tambien puede ser utilizada con "blue-green deployent".</span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;"><span style="font-size: 14px;">Blue-green deployment</span></span></div>
+<div><span style="font-size: 14px;">Se realiza un deployment de la nueva versión de un prodcuto iterativamente en paralelo con la vieja versión.</span></div>
+<div><span style="font-size: 14px;">Para cambiar entre una u otra versión solo se debe configurar un balanceador de carga una una configuración de router.    Una vez que el ambiente azul apruebe todos los tests se puede rutear definitivamente a este ambiente, el ambiente verde se baja de producción y se comienza nuevamente el ciclo para el proximo release.</span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div><span style="font-size: 14px;">Como resumen, podemos decir que un "cambio" es un termino común que aplica para todo tipo de cambios en software, middleware e infraestructura</span></div>
+<div><span style="font-size: 14px;">Reducir los ciclos de tiempo y entregables es un caracteristica escencial para liberar funcionalidad rapidamente y con bajo riesgo.</span></div>
+<div><span style="font-size: 14px;">La automatización es un elemento critico en DevOps para otorgarnos feedback rapido y ambientes consolidados aunque se debe considerar que un alto nivel de automatización tambien tiene riesgos.</span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+<div><span style="font-size: 14px; color: rgb(255, 0, 0);"><br clear="none"/></span></div>
+<div><span style="font-size: 14px; color: rgb(255, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);">Parte 2</span></strong></div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);">VISTA DE METRICAS Y MEDIDAS</span></strong></div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);"><br clear="none"/></span></strong></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Veremos con mayor detalle como alinear y compartir metas e incentivos.    Calidad y testing son aspectos criticos de DevOps los que seran cubiertos aquí, junto con el trabajo en equipo.</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: center;"><strong><span style="color: rgb(255, 0, 0);">Capitulo 4 Calidad y testing</span></strong></div>
+<div style="text-align: left;"><span style="text-decoration: underline; font-size: 14px;"><br clear="none"/></span></div>
+<div style="text-align: left;"><span style="text-decoration: underline; font-size: 14px;">Que es calidad?</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">La calidad debe tener las siguientes caracteristicas:</span><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0); text-decoration: underline;"><br clear="none"/></span></span></div>
+<div style="text-align: left;">
+<ul>
+<li><span style="color: rgb(0, 0, 0);">Cobertura extensa de unit testing.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Una cantidad de entradas reducida en el bug tracker.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Una cantidad de entradas reducida en el bug tracker ordenadas por prioridad.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Minimizar complejidad por axidente, esto es complejidad no inherente a la tarea realizada.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Conformidad a las metricas definidas con Checkstyle, PMD o Findbugs.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Conformidad con las caracteristicas deseables de ejecución como funcionalidad, performance, seguridad, disponibilidad, flexibilidad, usabilidad e interoperabilidad.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Conformidad con deseables de no-ejecución como modificabilidad, portabilidad, reusabilidad y testeabilidad.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Estabilidad y capacidad del software.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Cafe para el equipo en cualquier momento.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Calidad deseable en el negocio, incluyendo costos, calendario, marketing.</span></li>
+</ul>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+</div>
+<div style="text-align: left;"><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0); text-decoration: underline;">Aspectos claves de calidad</span></span></div>
+<div style="text-align: left;">
+<ul>
+<li><span style="color: rgb(0, 0, 0);">Definir que es calidad seguen el contexto de nuestra organización y deseables del producto.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Describir calidad en terminos de escenarios que pongan la calidad en contexto.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Distinguir entre atributos de calidad secundarios y principales.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Apreciar e identificar las dependencias entre estos atributos.</span></li>
+<li><span style="color: rgb(0, 0, 0);"> Dar enfasis a los atributos de calidad escenciales para el exito.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Construir calidad en el proceso, abarcando todas las actividades de ingeniera de software, incluyendo development y operations.</span></li>
+</ul>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0); text-decoration: underline;">Patrones para mejorar la calidad</span></span></div>
+<div><span style="color: rgb(0, 0, 0);"><strong>Calidad externa e interna</strong>: Calidad interna esta relacionada con el diseño y la codificación.     La acalidad externa es como se percibe el uso del producto.    Aunque un producto tenga excelente calidad externa si la calidad interna es mala, eventualmente se identificaran gran cantidad de bugs que se traduciran en deuda tecnica</span></div>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="color: rgb(0, 0, 0);"><strong>usar escenarios para describir calidad</strong>: Un buen enfoque es describir escenario en donde se identifiquen atriutos de calidad.    Un escenario debe contener por lo menos un creador de estimulo (usuarios), el estimulo (transacción iniciada), el artefacto afectado (componente para deslogearse), el ambiente en el que existe (operación normal en producción), el efecto de la acción (transacción realizada) y el tiempo de respuesta (un segundo).</span></div>
+<div><span style="color: rgb(0, 0, 0);">En el ejemplo anterior se puede apreciar que dando detalle a cada uno de los elementos de un escenario es posible definir calidad.     Para llegar a este nivel de detalle se deben tener requerimientos relevantes identificados y una idea de componentes propuesta.</span></div>
+<div><br clear="none"/></div>
+<div><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0); text-decoration: underline;">QA y haciendo Calidad visible</span></span></div>
+<div><span style="color: rgb(0, 0, 0);">QA es realizada por el equipo completo, incluyendo developers, y operations.    Con DevOps la calidad es una parte inherente del proceso ingenieria de software, QA se realiza a todo momento y por todo el equipo.</span></div>
+<div><span style="color: rgb(0, 0, 0);">Todo este trabajo de calidad se hace visible al utilizar "continuous integration" y "continuos delivery".</span></div>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="color: rgb(0, 0, 0);">/////////////////////////////////////////////////////////////////////////////</span></div>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0);">Automatización del testing</span></span></div>
+<div><span style="color: rgb(0, 0, 0);">Entregan feedback continuo respecto al estado y calidad  del software.    Ofrecen una red de emergencia al momento de agregar una caracteristica nueva o al solucionar bugs sin romper caracteristicas ya existentes.</span></div>
+<div><span style="color: rgb(0, 0, 0);">Es importante entender que no todos los tests pueden ser automatizados.</span></div>
+<div><span style="color: rgb(0, 0, 0);">tests de usabilidad, exploratorios o de diseño no se pueden automatizar.</span></div>
+<div><span style="color: rgb(0, 0, 0);">La automatización del testing se divide en unit testing, service testing y UI testing.</span></div>
+<div><span style="color: rgb(0, 0, 0);">La recomendación es utilizar todos los test, si esto no es posible el minimo a ejecutar son los tests unitarios</span></div>
+</div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Unit testing</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Unit testing revisará unidades unitarias, comunmente dentro de una clase.    No se consideran dependencias a otros recursos (ej base de datos) u otros componentes.    las herramientas estandar para esto son la familia xUnit.</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Service testing     </span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Los test de servicios o componentes unen diferentes unidades y por lo general tienen accesos a bases de datos y otros sistemas remotos.     Estos test se ejecutan por mas tiempo y deben ser ejecutados en el servidor donde se tiene centralizado el desarrollo. La idea es testear la conectividad de distintas capas del software.     Una herramienta poderosa para este tipo de testing es Arquillian.<br clear="none"/></span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">UI testing</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">UI testing inherentemente testea la aplicación, middleware y la infraestructura.    El UI testing es el mas caro de implementar por lo que la recomendación es a crear "service tests" que sean gatillados po un UI test.</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Por ejemplo, en vez de crear un UI test que valide si al hacer click en un boton, los datos se guarden a la base de datos, es mas barato crear un service testing del proceso de guardar en la base de datos y que este sea invocado por el UI testing de hacer click en el boton.</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Selenium 2 es una herramienta para este tipo de testing.</span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: left;"><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0); text-decoration: underline;">Errores en la estrategia de testing</span></span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);">Un error es no comenzar con los fundamentos del testing (unit testing).    Si no se hace unit testing se pueden presentar los siguientes problemas:</span></div>
+<div style="text-align: left;">
+<ul>
+<li><span style="color: rgb(0, 0, 0);">El feedback toma mucho tiempo, especialmente para solucionar bugs</span></li>
+<li><span style="color: rgb(0, 0, 0);">Aislar bugs es mas dificil</span></li>
+<li><span style="color: rgb(0, 0, 0);">El interior del software sufrirá problemas ya que las unidades basicas no fueron testeadas.</span></li>
+<li><span style="color: rgb(0, 0, 0);">El diseño sufre ya que los test ayudan a mejorar el diseño del software.</span></li>
+</ul>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="text-decoration: underline;"><span style="color: rgb(0, 0, 0); text-decoration: underline;">Insertando quality gates</span></span></div>
+<div><span style="color: rgb(0, 0, 0);">Se debe definir una estrategia y una alineación a esta definición o por lo menos un demostración una vez que se a iterado totalmente.</span></div>
+<div><span style="color: rgb(0, 0, 0);">Quality gates es el cumplimiento de una meta durante el delivery donde requerimientos de calidad has sido chequeados.  Si los quality gates no se cumplen esto puede seignificar un cuello de botella que afecta el delivery.</span></div>
+<div><span style="color: rgb(0, 0, 0);">Algunos casos de quality gates</span></div>
+<div>
+<ul>
+<li><span style="color: rgb(0, 0, 0);">El desarrollo continuo falla si el codigo revisado provoca fallas en el testing</span></li>
+<li><span style="color: rgb(0, 0, 0);">El continuous build falla si la covertura del testing o codigo nuevo no cumplen los objetivos de cobertura.</span></li>
+<li><span style="color: rgb(0, 0, 0);">El continuous build falla si checkstyle, PMD o findbugs detectan codigo o flujo de diseño con errores severos.</span></li>
+<li><span style="color: rgb(0, 0, 0);">El QA automatico falla si Sonar arroja una "alerta".</span></li>
+<li><span style="color: rgb(0, 0, 0);">El QA falla si los test de aceptación fallan.</span></li>
+<li><span style="color: rgb(0, 0, 0);">El release build falla si la aplicación aún depende de componentes que aún estan en desarrollo.</span></li>
+<li><span style="color: rgb(0, 0, 0);">Rollout a producción falla si los test BDD fallan al chequear el comportamiento de la infraestructura.</span></li>
+<li><span style="color: rgb(0, 0, 0);">El rollout se detiene si check-ins al codigo de la infraestructura provoca build errors.</span></li>
+</ul>
+<div><span style="color: rgb(255, 255, 0);"><br clear="none"/></span></div>
+<div><span style="color: rgb(255, 255, 0);">=======================</span></div>
+<div><span style="color: rgb(255, 0, 0);">=======================</span></div>
+<div><span style="color: rgb(255, 0, 0);">Revisar ejemplo en el libro!!!!!</span></div>
+<div><span style="color: rgb(255, 0, 0);">=======================</span></div>
+<div><span style="color: rgb(0, 255, 0);">=======================</span></div>
+<div><span style="color: rgb(0, 255, 0);"><br clear="none"/></span></div>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+</div>
+<div style="text-align: center;"><span style="color: rgb(255, 0, 0);"><strong>Capitulo 5 Introducción a incentivos compartidos</strong></span></div>
+<div style="text-align: center;"><span style="color: rgb(255, 0, 0);"><strong><br/></strong></span></div>
+<div style="text-align: left;"><font color="#090909">Caso de estudio: Guerra en el reino Magico</font></div>
+<div style="text-align: left;"><font color="#090909">Los equipos de desarrollo y operaciones se encuentran en pisos diferentes del edificio.     El proceso de entrega de software a operaciones consistía en en llenara un formulario con información del software y arquitectura.     El testing es inexistente y los desarrolladores junior no tienen mentoría de los senior.     La entrega del sofware siempre es caotica, no se sabe que versión del software corresponde a cual formulario y que documentos.     La calidad del software es mala y no se sabe hasta que pasa a producción.     Esto lleva a muchos problemas a operaciones, el deployment presenta problemas y finalmente es una suerte de “prueba y error”, además hay que considerar la configuración del software para el ambiente productivo.</font></div>
+<div style="text-align: left;"><font color="#090909">El management de ambos equipos nota falta de motivación, mala calidad del software, se comienza a apuntar con el dedo…</font></div>
+<div style="text-align: left;"><font color="#090909">Se decide agregar mas formularios al proceso de transición y definir objetivos (MBO management by objectives) donde desarrollo debe entregar software de alta calidad y operaciones debe presentar el software en producción sin bugs.</font></div>
+<div style="text-align: left;"><font color="#090909">¿Cual fue el resultado? El desarrollo fue aún mas caótico y lento por lo que operaciones gano bonos al tener menos carga de trabajo.     Cuando desarrollo presentaba una versión esta era rechazada por operaciones al presentar bugs.</font></div>
+<div style="text-align: left;"><font color="#090909">Esto escaló mas el conflicto entre ambos equipos, personas tratándose de mentirosos, hermetismo y chismes entre los equipos.</font></div>
+<div style="text-align: left;"><font color="#090909">Ante esto se procedió a crear mas documentación y reuniones de coordinación infructuosas, etc.</font></div>
+<div style="text-align: left;"><font color="#090909">La conclusión es que los reinos mágicos no existen, para lograr los objetivos se requiere un trabajo colaborativo y coordinado.</font></div>
+<div style="text-align: left;"><font color="#090909"><br/></font></div>
+<div style="text-align: left;"><font color="#090909"><u>Que es un equipo?</u></font></div>
+<div style="text-align: left;"><font color="#090909">Es un grupo de trabajo en que los miembros trabajan en cercanía, cooperativamente y con interdependencia para lograr objetivos compartidos.     Por lo general los miembros tienes habilidades complementarias (ej: desarrollo y operaciones).</font></div>
+<div style="text-align: left;"><font color="#090909">Los equipos no son grandes (menos de 10 personas), muchos miembros complican el entendimiento y comunicación con los pares.     El tamaño depende de la complejidad de la tarea.</font></div>
+<div style="text-align: left;"><font color="#090909"><br/></font></div>
+<div style="text-align: left;"><font color="#090909">NOTA: Todo afecta el rendimiento de un equipo: sillas, escritorios, la oficina, el lenguaje, etc.     Esto puede afectar positiva o negativamente.</font></div>
+<div style="text-align: left;"><font color="#090909"><br/></font></div>
+<div style="text-align: left;"><font color="#090909"><u>Objetivos y acuerdos de trabajo</u>     </font></div>
+<div style="text-align: left;"><font color="#090909">Un objetivo es el resultado deseado al que el equipo debe llegar.     Cada miembro debe tener objetivos individuales que deben estar alineados con el objetivo global del equipo.     Los objetivos deben entregar valor de manera fácilmente identificable.</font></div>
+<div style="text-align: left;"><font color="#090909">Estos puntos son importantes para lograr equipos colaborativos y ágiles:</font></div>
+<div style="text-align: left;">
+<ul>
+<li><span style="color: rgb(9, 9, 9);">Los acuerdos de como funcionará el equipo deben ser explícitos para evitar conflictos posteriores</span><br/></li>
+<li>Cada equipo funciona de manera diferente, solo se puede asumir que todos comparten la misma información y objetivos si estos se discutieron y documentaron.</li>
+<li>Los acuerdos ayudan a los nuevos miembros a participar positivamente.</li>
+<li>En las reuniones, los acuerdos explícitos ayudan a cuantificar el trabajo ya que si algo se esta realizando de forma incorrecta otro miembro puede identificarlo.</li>
+</ul>
+<div><u>El efecto Hawthorne</u></div>
+<div>Entre 1924 y 1932 se realizaron experimentos en la fabrica Hawthorne lo que llevó al termino “efecto Hawthorne”.</div>
+<div>Este describe que las personas cambian su comportamiento cuando saben que están bajo una investigación o estudio.</div>
+<div>Llevando esto a DevOps, al introducir DevOps a la organización y a la vez definiendo objetivos y acuerdos, esto puede llevar a una mejora inmediata en la organización.</div>
+<div>Algunos ejemplos:</div>
+<div>
+<ul>
+<li>Avanzar: cualquier miembro puede solicitar un test de acuerdos. Otros pueden clarificar la pregunta realizada y a la vez se confirma el nivel de acuerdo del equipo.</li>
+<li>Uso inteligente del tiempo en reuniones: Mantener solo una conversación en un momento dado en las reuniones.</li>
+<li>Decisiones: Tomar las decisiones en equipo. Los mecanismos pueden ser votación, deciden los mas calificados, consenso,  etc.   Las decisiones democráticas generan compromiso, entusiasmo y reducen el riesgo.</li>
+<li>Feedback: Buscar y ofrecer feedback en las acciones e interacciones realizadas.  Esto también puede ser expresado por escrito en correos, notas, etc.   Algunos ejemplos de feedback son emociones, creencias, valores, criticas constructivas.</li>
+<li>Tiempo: Si una reunión es agendada, darse el tiempo de ir, llegar a la hora, ir preparado y ayudar a mantener el foco en esta.</li>
+<li>Aprendizaje: Fallar rapido y fallar seguido identifica errores de manera temprana. Un buen enfoque es el uso de experimentos para afinar los detalles de los acuerdos a discutir.</li>
+<li>Transferencia de conocimiento: Desarrollo interactúa con miembros de Operaciones, lo ideal es que esto se haga una vez al día.  </li>
+<li>Empoderamiento colectivo: Pedir ayuda si una tarea nos tiene atascados</li>
+</ul>
+<div>Objetivos y acuerdos de trabajo son esenciales, la motivación del equipo es critica también.</div>
+</div>
+<div><br/></div>
+<div><u>Motivación</u></div>
+<div>La motivación nos permite ir mas allá para poder realizar nuestras acciones.  Para estar motivados es muy importante tener objetivos.     Es por esto que los objetivos deben ser manejables y realistas de manera que uno pueda terminar lo que comenzó.     Esto es valido tanto para los miembros como para el equipo completo.</div>
+<div>Al compartir objetivos se crea una actitud positiva, lo que ayuda a sobreponerse de fallas y dificultades.</div>
+<div>Los valores son críticos para la motivación, los mas importantes son respeto, confianza, disposición, foco, coraje, compromiso y simpleza.</div>
+<div>Los bloques para construir motivación son:</div>
+<div>
+<ul>
+<li>Pertenencia: El equipo debe fracasar o lograr el éxito como un grupo.<br/></li>
+<li>Seguridad: Ambiente que tolera los errores.</li>
+<li>Competencia: Los miembros quieren ser involucrados en algo que ellos tengan el convencimiento de que funcionará. Para lograr esto es necesario difundir conocimiento y habilidades, feedback positivo, altos estándares, dificultades superadas y la excelencia técnica.</li>
+<li>Progreso: Cuando se logra un objetivo importante es el momento de celebrarlo!</li>
+</ul>
+Otros factores que influyen son seguridad, salario, status, condiciones de trabajo, políticas y beneficios.</div>
+<div><br/></div>
+<div><u>Transformandose en un equipo</u><br/></div>
+<div>Se comienza con una definición compartida, algo como:</div>
+<div>
+<ul>
+<li>Definición de los fundamentos: determinar los objetivos compartidos (ejemplo: Workshop)<br/></li>
+<li>Definir el alcance, así como los limites y el contexto (ejemplo: que no está dentro de los alcances debe ser definido)</li>
+<li>Definir victorias tempranas, estas deben ser logradas rápidamente y compartidas y apreciadas por todos.</li>
+<li>Definir el camino a la solución, eso es, que quieres que se defina como objetivos compartidos (ejemplo: brainstorming)</li>
+<li>Definir los siguientes pasos: organizar y planificar los siguientes pasos para fomentar los objetivos compartidos.</li>
+<li>Definir los tiempos con holgura para mejorar el trabajo, la colaboración y las definiciones para los objetivos.  tiempos con holgura permiten pensar y analizar el enfoque de trabajo actual.</li>
+<li>Inspeccionar e iterar.</li>
+</ul>
+<div>Es crítico involucrar a desarrollo y operaciones en el proceso de definición.</div>
+<div>Lo siguiente es enfocarse en como compartir objetivos entre desarrollo y operaciones.  Estas son algunas sugerencias:</div>
+<div>
+<ul>
+<li>Celebrar el éxito juntos (ejemplo: la liberación de software a producción).</li>
+<li>Reconocer el trabajo de otros: dev y ops tienes habilidades y tareas complementarias.</li>
+<li>Utilizar herramientas y tareas compartidas entre los departamentos (ejemplo: Provisioning).</li>
+<li>Hacer preguntas y dar feedback e interacción.  Esto para aprender, mostrar interés y fomentar el entendimiento compartido.</li>
+<li>Fomentar la visibilidad (ejemplo: Uso de kanBan, reuniones a inicio del dia o retrospectivas, pomodoro)</li>
+</ul>
+<div>Aparte de esto, los managers se deben comprometer a:</div>
+<div>
+<ul>
+<li>Permitir auto-dirección (el manager no debería cargar tarjetas en la tabla kanban)</li>
+<li>Entregar la motivación apropiada (evitar micromanagement)</li>
+<li>Dar holgura en los tiempos (para aprender y mejorar)</li>
+<li>Permitir hacer el trabajo de manera exitosa (entregando las herramientas, buenas practicas y espíritu necesario)</li>
+<li>Fomentar el entrenamiento y colaboración rotando los cargos y enfatizar estrategias comunicacionales.</li>
+<li>Aceptar el impacto del entorno físico (mantener en optimas condiciones el espacio de trabajo y los inmuebles).</li>
+</ul>
+<div><u>Las etapas de Tuckman en el desarrollo de grupos</u></div>
+</div>
+<div>En 1965, Bruce Tuckman introdujo el modelo de 4 etapas.  Se debe pasar por las 4 etapas para llegar al máximo rendimiento.     Primero, la etapa de formación, donde invididuos tienen el deseo de ser aceptados por otros, conocerse y evitar conflictos.   Luego viene la etapa de tormenta, miembros con distintas ideas compiten por ser considerados, las funciones se discuten y se propone que modelo de liderazgo será aceptado.     Luego viene la etapa de normativa, se define un objetivo y un plan de equipo, todo el equipo tiene la responsabilidad de lograr el éxito de los objetivos.     Muchos grupos nunca pasan esta etapa.     La ultima es la etapa de rendimiento, los integrantes hacen su trabajo sin problemas ni necesidad de supervisión y toman sus propias decisiones.       Cada vez que un nuevo integrante ingresa al equipo, se debe comenzar desde la etapa de formación.   Si se entra al grupo en la etapa de tormenta puede dar la sensación de caos, hay que evaluar con atención para identificar la etapa.</div>
+<div><br/></div>
+<div><u>Facilitadores</u></div>
+<div>Una manera de formar un equipo es introduciendo un facilitador que ayude al equipo a entender los objetivos y asista en el dia a dia.   Un facilitador especial sería un Scrum Master, que se dedica a mantener los procesos y facilitar el trabajo.</div>
+<div>Es muy importante asignar un facilitador para que DevOps avance.     Estos son algunos cambios para introducir DevOps:</div>
+<div>
+<ul>
+<li>Local Sponsor: Asignar un manager que apoye la nueva idea y que esté abierto a nuevas ideas.</li>
+<li>Campeón dedicado: Introducir una nueva idea puede ser mucho trabajo para un voluntario, si es necesario buscar a alguien que lo pueda hacer.</li>
+<li>Angel corporativo: Ayuda a alinear la innovación con los objetivos de la organización.  Por lo general un ejecutivo.<br/></li>
+<li>Evangelista: Alguien que comparta la pasión por la nueva idea.</li>
+</ul>
+<div>Adicionalmente, desarrollo y operaciones (junto con un facilitador) pueden fomentar la colaboración usando mapas mentales, pizarras, brainstorm, workshops, wikis, etc.</div>
+</div>
+<div><br/></div>
+<div><font color="#FF2C01">Casos de Exito</font></div>
+<div><font color="#070000">Los siguientes de casos de éxito muestran como diferentes aspectos se combinan en los equipos de dev y ops haciendo de la colaboración un éxito.     </font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><u>Aaron Nichols: DevOps en Rally Software</u></font></div>
+<div><font color="#070000">Rally software entrega servicios para manejar practicas agile y lean y tiene alrededor de 300 empleados.     Devs son 60 personas y ops 12.     El equipo de desarrollo esta dividido en 7 sub equipos, en donde los desarrolladores se mueven entre estos sub equipos.</font></div>
+<div><font color="#070000">El modelo de negocios es SaaS y los clientes tienen altas espectativas de seguridad, disponibilidad y funcionalidad.</font></div>
+<div><font color="#070000">Se hace deploy de código semanalmente con cada commit que se testea automaticamente y pasa a producción.     El proceso de basa fuertemente en la automatizacion del testing, dark launches, feature toggles y otras técnicas para avanzar rápido manteniendo una alta calidad de los productos.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">Rally no siempre a funcionado así, 4 años atras los ciclos de deploy eran cada 8 semanas, 6 semanas de desarrollo, una semana de testeo manual y una semana de deployment manual.     Esto significó muchas maratones de días para lograr los objetivos y muchas veces habia que solucionar bugs en producción.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">Colaboración a traves de la colación y stand-ups</font></div>
+<div><font color="#070000">El core de la cultura en Rally es la colaboración, en las oficinas devs y ops se ubican unos al lado de otro, lo que ha permitido una contribución significante a que ambos equipos trabajen de manera mas cercana.     Cada día comienza con un stand-up, una reunión "scrum de scrums” donde se discuten de problemas ocurridos el dia anterior y como fueron atacados.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">reuniones de arquitectura y sincronización semanales</font></div>
+<div><font color="#070000">grupos de dev y ops interesados en la estabildiad y performance de la infraestructura de Rally se juntan todas las semanas.     Cualquier cambio importante al software es presentado a estas reuniones y es discutido, de ser necesario se reune mas data y se hace una segunda reunión.     Tambien se discute la prioridad del trabajo de 2 equipos dedicados a infraestructura.     Estos son equipos que estan realizando refactoring a codigo antiguo y diseñando nuevos servios.</font></div>
+<div><font color="#070000">Estos equipos fueron formados hace 2 años para cubrir problemas a solucionar y desde entonces siguen existiendo.</font></div>
+<div><font color="#070000">Tambien existe una reunion semanal para DevOps, donde se discuten problemas operacionales ocurridos la semana anterior ademas de planificar el deploy de la semana.     Aca es donde los equipos discuten los cambios a realizar para incluirlos en el proximo deployment.     Tambien se discuten las mantenciones y como comunicarlas a los clientes además de conversar temas no necesariamente tecnicos.</font></div>
+<div><font color="#070000">Tambien hay reuniones DevOps mensuales en donde ops y dev discuten el trabajo realizado y obtienen feedback.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"> Retrospectivas</font></div>
+<div><font color="#070000">Tenemos retrospectivas mensuales las que incluyen a dev y ops, estas son una buena oportunidad para discutir problemas que involucren a ambos equipos.     Estos problemas son documentados y discutidos en retros futuras.</font></div>
+<div><font color="#070000">Tambien son una buena instancia para discutir outages que necesitan ser estudiadas con mayor detalle.     Se desarrollo un proceso llamado restrospectiva postevento (PER) que es donde se documenta un evento y las acciones correctivas que fueron necesarias.</font></div>
+<div><font color="#070000">PER por lo general ocurre 24 horas despues del evento en donde se involucra devs, ops, soporte y otros miembros que puedan aportar con detalles y experiencias.     Hay un documento unico que se despliega en los siguientes items:</font></div>
+<div>
+<ul>
+<li><font color="#070000">Linea de tiempo: Se colecta que ocurrio durante el evento, esto incluye alertas, hora del downtime, cuando las llamadas telefonicas fueron realizadas, cuando los clientes reportaron el problema, etc.</font></li>
+<li><font color="#070000">Positivos: Que funcionó bien durante el evento?   Que creemos que funcionó bien?</font></li>
+<li><font color="#070000">Deltas: Que no funcionó bien durante el evento? Donde es necesario mejorar?</font></li>
+<li><font color="#070000">Acciones correctivas y sus dueños: Que acciones de deben realizar para cubrir los deltas?  Identificar los owners de cada acción, deberian estar en esta reunión.</font></li>
+<li><font color="#070000">Resumen de metricas: Una vez completa la linea de tiempo se documenta el downtime total, severidad, tiempo para detectar, tiempo para reparar, etc.</font></li>
+</ul>
+<div><font color="#070000">Si el evento es significante se agenda una demostración para todo el equipo de TI.     Los documentos estan siempre disponibles como parte de las reuniones sync.     Se ha mejorado mucho en la manera de hacer las cosas, tanto estudiando las fallas como los exitos.</font></div>
+</div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">Abrazando el cambio y experimentando</font></div>
+<div><font color="#070000">En Rally es común escuchar “intentémoslo, si no funciona buscamos una alternativa”, La voluntad a probar cosas nuevas es critica para lograr cambios.</font></div>
+<div><font color="#070000">Rally cambio scrum por kankan como uno de los primeros experimentos en unos pocos equipos.     Luego de 2 pruebas exitosas con kanban, se decidió que todos deben moverse a kanban.     Esta no fue una decisión vertical, si no que en concenso con las mismas personas que estaban sufriendo con Scrum.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">Compartir valores clave</font></div>
+<div><font color="#070000">Todo lo anterior ha ido evolucionando con el tiempo en Rally gracias a valores básicos que son protegidos por toda la organización.     Contratamos a gente que defienda estos valores y que responda cuando estos son amenazados.     Es importante indicar que estos valores no son perpetuos y pueden cambiar si ya no están aportando a crear el ambiente que Rally demanda.</font></div>
+<div><font color="#070000">Nuestros valores clave son entregar a las personas tareas en las que se sientan apasionados, acoger el cambio, ser respetuoso y colaborativo.     Estos simples valores son la base para todo lo que se ha construido en el ultimo tiempo el Rally.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><u>Lisa Crispin: Devops, obviamente!</u></font></div>
+<div><font color="#070000">La compañia donde trabajo entendió que el exito esta en la generación del software de calidad, se implementaron practicas como test driven development (TDD)</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">Responsabilidades compartidas</font></div>
+<div><font color="#070000">los primeros esfuerzos se basaron en implementar continuous integration y la construcción de artefactos de facil deployment.     Nuestro sysadmin le enseño a desarrollo y QA como contruir ambientes como como debugear problemas.</font></div>
+<div><font color="#070000">El equip creció pero aún solo tenemos un sysadmin.     Todo desarrollo y QA aprendió como reiniciar los servidores en caso de fallas.     Ellos mismos mantienen los ambientes de testing.     Claramente el equipo disfruta el empoderamiento colectivo no solo para el ambiente productivo y de testing, si no que tambien para mejorar CI y procesos para optimizar la construcción de ambientes.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">LLuvia de ideas y experimentos</font></div>
+<div><font color="#070000">Se monitorea cuanto toma contruir un ambiente y con lluvia de ideas se obtiene un feedback rapido.     Emigramos de cruise control a hudson y luego a jenkins, lo que facilitó a los miembros agregar trabajos y actualizar los existentes.</font></div>
+<div><font color="#070000">Ahora se esta optando por la virtualización de servers esclavos.     Tenemos pasos a producción cada 2 semanas automatizando lo máximo posible para reducir errores.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">Calidad y objetivos compartidos</font></div>
+<div><font color="#070000">Ya van 8 años de nuestro compromiso con la calidad, el codigo esta protegido con cientos de test automatizados que se ejecutan a todo nivel.     Ya que CI nos indica de inmediato si un modulo se rompió, tenemos confianza en realizar cambios y crear nuevas versiones del software.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000">CONCLUSION</font></div>
+<div><font color="#070000">Se ha aprendido que el trabajo en equipo define por si mismo los objetivos, acuerdos y motivación.     Transformarse en en un equipo puede tomar bastante tiempo por lo que hay que ser pacientes.     Es preferible realizar pequeños pasos y logros.     Si se presentan obstáculos (van a ocurrir), solucionar uno a la vez.     Valorar el rol de facilitador es my importante.     Las 2 historias de éxito mas la historia de guerra indican como el trabajo en equipo logra mejorar el rendimiento y los silos lo empeoran.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#070000"><br/></font></div>
+<div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);">Parte 3</span></strong></div>
+<div style="text-align: center;"><font color="#FF0000"><span style="font-size: 14px;"><b>PROCESOS</b></span></font></div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);"><br clear="none"/></span></strong></div>
+<div>Esta parte se dedica a los aspectos de DevOps que son relevantes para los procesos.     Se discutiran practicas para lograr un enfoque holistico par construir puentes entre dev y ops</div>
+<div><br clear="none"/></div>
+<div style="text-align: center;"><strong><span style="color: rgb(255, 0, 0);">Capitulo 6 Obteniendo feedback rapidamente</span></strong></div>
+</div>
+<div style="text-align: center;"><strong><span style="color: rgb(255, 0, 0);"><br/></span></strong></div>
+<div style="text-align: left;"><font color="#040404">En este capitulo se discutiran 4 areas de DevOps que forman una matriz. </font></div>
+<div style="text-align: left;">
+<ul>
+<li><font color="#040404">Extender desarrollo a operaciones</font></li>
+<li><font color="#040404">Extender operaciones a desarrollo</font></li>
+<li><font color="#040404">Agregar desarrollo en operaciones</font></li>
+<li><font color="#040404">Agregar operaciones en desarrollo</font></li>
+</ul>
+</div>
+<div><font color="#070000">En este capitulo también se aprenderá sobre kanban, un metodo para cambios incrementales que es muy util para implementar devops.     Finalmente un ejemplo en donde se unen las 4 areas de la matriz combinadas con kanban.</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><font color="#FF2813">La matriz de areas DevOps</font></div>
+<div><font color="#070000">Patrick Debois sugiere que DevOps se divide en 4 areas que se cruzan entre ellas:</font></div>
+<div><font color="#070000"><br/></font></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_1.png" height="261" width="528"/><font color="#070000"><br/></font></div>
+<div><br/></div>
+<div>
+<ul>
+<li>Area1: Extender desarrollo a operaciones: Dev y Ops colaboran en lo que sea necesario para entregar el proyecto a producción.</li>
+<li>Area2: Extender operaciones a desarrollo: Esta area se enfoca en la colaboración a traves de entregar información de operaciones a desarrollo (el proyecto).</li>
+<li>Area3: Agregar desarrollo en operaciones: Se enfoca en involucrar a desarrollo en tareas tipicamente de operaciones o bajo la responsabilidad de operaciones.</li>
+<li>Area4: Agregar operaciones en desarrollo: El dpto de operaciones se involucra en el proceso de desarrollo de una manera integral.</li>
+</ul>
+<div>Distinguir estas areas puede ayudar a introducir DevOps a organizaciones y proyectos.  Estas 4 areas cubren las 3 vistas mencionadas en el capitulo 1 (vista de metricas, vista de proceso y vista técnica) aunque la vista de proceso es la mas dominante.</div>
+</div>
+<div>Al introducir DevOps no es necesario cubrir las 4 areas simultaneamente.     Realizar cambios area por area ya ofrecerá un aumento considerable en la colaboración entre dev y ops.     </div>
+<div><br/></div>
+<div><u>Extender desarrollo a operaciones</u></div>
+<div>Requiere acciones para entender el desarrollo de software en una manera integral aplicando items relevantes en producción de manera temprana como parte del proceso de desarrollo (lo que requiere colaboración con operaciones).</div>
+<div>Una practica tipica esta area es utilizar procesos y herramientas para provisionar infraestructura.</div>
+<div>
+<ul>
+<li>Una practica tipica sería utilizar soluciones como Puppet para provisionar ambientes desde código.</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>“Los ambientes se provisionan manualmente y no estan alineados con el software de producción”</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>Practica: Usar herramientas como Puppet para provisionar ambientes.</li>
+<li>Objetivo:        Retroalimentación rapida a traves de automatización.</li>
+<li style="list-style: none; display: inline">
+<div style="margin-left: 2em">
+<ul>
+<li>Reutilización de codigo y herramientas</li>
+<li>Confiabilidad del proceso de provisionamiento y delivery.</li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div>Este codigo de infraestructura puede ser manejado de la misma manera que el codigo de aplicaciones (control de versiones, continuos integration, etc).     El objetivo es evitar el provisimonamiento manual de ambientes.</div>
+</div>
+<div>Artefactos de infraestructura tambien pueden tener releases como el software y ponerlas en el controlador de versiones.</div>
+<div>Otra practica muy comun de extender desarrollo a operaciones es llevar el proceso de desarrollo a operaciones, un ejemplo de esto es utilizar kanban para monitorear el trabajo de desarrollo y operaciones.</div>
+<div><br/></div>
+<div><u>Extender operaciones a desarrollo</u></div>
+<div>Similar al area1 pero la convergencia empieza por operaciones, en esta area, por lo general desarrollo no tiene conocimiento del comportamiento de la aplicación una vez que a sido deployada a producción.</div>
+<div>
+<ul>
+<li>Una practica común sería compartir el monitoreo y metricas de producción con desarrollo.</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>“Desarrollo no tiene conocimiento del comportamiento de la ejecución del software en producción”</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>Practica:        Entregar monitoreos y logs a desarrollo</li>
+<li style="list-style: none; display: inline">
+<div style="margin-left: 2em">
+<ul>
+<li>Compartir información sobre el estado en producción.</li>
+</ul>
+</div>
+</li>
+<li>Objetivo:        Permitir a desarrollo mejorar</li>
+<li style="list-style: none; display: inline">
+<div style="margin-left: 2em">
+<ul>
+<li>Permitir a desarrollo rastrear incidentes de producción.</li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div>Operaciones reune toda la información del monitoreo de las aplicaciones en producción.     Sin difundir esta información a desarrollo, una gran oportunidad de mejora y aprendizaje se pierde.</div>
+</div>
+<div>Al integrar el monitoreo y logs con desarrollo, se pueden establecer métricas del servicio en linea.</div>
+<div>Compartir los logs es extremadamente importante ya que permite a desarrollo solucionar bugs detectados en tiempo de ejecución.     No se recomienda que desarrrollo acceda a los logs directamente al ambiente de producción, por lo que estos deberian ser sincronizados a un ambiente interno.</div>
+<div><br/></div>
+<div><u>Agregar desarrollo en operaciones</u></div>
+<div>Esta area diseña procesos entre desarrollo y operaciones al agregar desarrollo (no solo el equipo si no que las actividades y objetivos) en operaciones.</div>
+<div>
+<ul>
+<li>Una practica común seria compartir monitoreo y metricas de producción con desarrollo.</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>“Desarrollo entrega nuevas caracteristicas con poco cuidado en requerimientos no funcionales”</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>Practica: Setear estabilidad y capacidad como objetivos de desarollo.</li>
+<li>Objetivo: Alinear objetivos, compartir incentivos.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div>Desarrollo por lo general ignora requerimientos no funcionales porque el objetivo principal es crear nuevas caracteristicas por lo que el resultado no será el optimo.     </div>
+</div>
+<div><br/></div>
+<div><u>Agregar operaciones en desarrollo</u></div>
+<div>El equipo de operaciones hace preguntas y da feedback de la solución aún en desarrollo.     El objetivo es permitir a desarrollo obtener feedback inmediato respecto a la factibilidad del producto y se comparte conocimiento entre los equipos de manera continua y temprana.</div>
+<div>
+<ul>
+<li>Un ejemplo es incluir el equipo de operaciones en desarrollo para dar feedback de la factibilidad del desarrollo.</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>“Mientras se despliega el software en producción por primer vez, se descubrió que se necesitan maquinas mas potentes para levantar el software”</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>Practica: Operaciones entrega feedback respecto al diseño de la aplicación en desarrollo de manera temprana y continua.</li>
+<li>Objetivo: Desarrollo obtiene feedback respecto a factibilidad, se comparte conocimiento.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div><br/></div>
+</div>
+<div><br/></div>
+<div><font color="#FF2813">Comenzando con Kanban</font></div>
+<div>Kanban no define roles o procesos, no es un método de gestión de proyectos.     Ya deben estar definidos los roles y procesos, Kanban fomenta cambios continuos, incrementales y evolutivos en nuestra organización.</div>
+<div>Es importante identificar elementos actuales que funcionen de manera aceptable y mantenerlos, tambien es importante disminuir el miedo para facilitar cambios inmediatos y a futuro.</div>
+<div><br/></div>
+<div><u>Introducción a Kanban</u></div>
+<div>El metodo Kanban sugiere liberar cambios de manera incremental y evolutiva, se basa en la teoria de las limitaciones (theory of constraints TOC) que señala que la cadena es tan fuerte como el mas debil de sus eslabones.     Otra influencia importante es Kaizen que literalmente significa “mejora continua”.</div>
+<div>En Kanban las estaciones reciben un “empujon” de la demanda, la oferta es de acuerdo a la demanda, no según teorias academicas no realistas de la demanda.</div>
+<div><br/></div>
+<div><u>Propiedades de los 5 nucleos</u></div>
+<div>Se han identificado 5 nucleos que han estado presentes en casa implementación exitosa del metodo Kanban.</div>
+<div>
+<ul>
+<li>Visualizar el flujo de trabajo: El flujo de trabajo del conocimiento es invisible por definición, hacerlo visible es entender como el trabajo funciona.   Sin entender el flujo, hacer los cambios correctos es dificil.   Una manera sencilla de ver el workflow es utilizar una muralla con tarjetas y columnas, cada columna representa un estado dentro de los pasos del workflow.<br/></li>
+</ul>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_2_3.png" height="370" width="519"/><br/></div>
+</div>
+<div><br/></div>
+<div>
+<ul>
+<li>Limitar el WIP (Work in progress): Un sistema de tracción es implementado (linea de ensamblaje) para cada parte del workflow.   Esta linea de ensamblaje será el principal estimulo para cambios continuos, incrementales y evolutivos en el sistema.   El elemento critico es que cada estado tiene WIP limitado en el flujo de trabajo, un nuevo trabajo es “empujado” a la linea de ensamblaje si la actividad/estado siguiente tiene una capacidad bajo su limite de WIP.</li>
+<li>Flujo administrativo: El flujo de trabajo en cada estado debe ser monitoreado, medido y reportado.  Al administrar el flujo se puede evaluar que cambios continuos e incrementales han tenido un impacto positivo o negativo en el sistema.</li>
+<li>Las politicas del proceso deben ser explicitas: Si el mecanismo de un proceso no es explicito es practicamente imposible tener debate y mejorarlo.    Con un entendimiento explicito es posible estar en un estado racional, empirico y objetivo para discutir problemas.   El proceso debe estar definido bajo politicas que gobiernan el comportamiento, estas politicas estan bajo control de laa administración.</li>
+<li>Mejorar la colaboración: Si un equipo comparte sus concimientos sobre el trabajo, el flujo del trabajo, el proceso y los riesgos, es mas probable construir un entendimiento colectivo que finalmente sugerirá acciones a traves del consenso.</li>
+</ul>
+<div><u>Un ejemplo de tabla Kanban para DevOps</u></div>
+</div>
+<div>Una tabla Kanban puede utilizas imanes, fichas, lapices de colores o notas stick como el item a trabajar (la señal) que es gatillada en el sistema kanban.     Alternativamente se puede utilizar software.     Cada tarjeta o item a trabajar se mueve desde el estado inicial al estado final, los que son agrupados en lineas verticales.     Estas lineas pueden ser <font color="#FF2813">backlog, ready, coding, testing, QA, deploy, done, live.</font> <font color="#0A0001">     Una tarjeta puede tener otras tarjetas como dependencia.</font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001">En la figura superior, el backlog consiste en tareas abiertas ademas de otras 4 lineas next, code, test y deploy, las que son seguidas por el trabajo “live” ya en producción.</font></div>
+<div><font color="#0A0001">Las tarjetas kanban fluyen por estos estados de izquierda a derecha, desde el backlog hasta live.     La tabla kanban permite seguir cada trabajo y su flujo.     Todos los sistemas kanban estan diseñados para limitar el WIP porque mientras mas WIP, mas lento es el flujo.</font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001">Ademas de las lineas verticales, tenemos 2 lineas horizontales, estan indican “clase estandar” y “clase expedita” de servicio.     Cada clase de servicios tiene sus propias politicas incluyendo definiciones de prioridad y como son “empujados” a traves de los estados Kanban.     WIP se define como el numero maximo de tarjetas que una columna especifica puede tener al mismo tiempo.     En este ejemplo solo una tarjeta esta en la clase expedita, esto permite al equipo deployar items urgentes a producción de manera rapida.</font></div>
+<div><font color="#0A0001">La clase expedita esta reservada para items urgentes que deben slir a producción con tiempo limitado.     Si otro itme urgente aparece y el WIP definido ya ha sido alcanzado, será visible que no todos los items pueden ser realizados al mismo tiempo y que el item con mayor prioridad (que ya deberia estar WIP en la clase expedita) debe ser completado para entregar el maximo valor al cliente.</font></div>
+<div><font color="#0A0001">WIP debe ser limitado porque un WIP excesivo disminuye el tiempo que toma el ciclo apareciendo cuellos de botella, los que llevan a retrasos y mutitarea.     La multitarea tiene el efecto negativo de reducir el tiempo de trabajo al incrementar el tiempo de cambio de contexto.</font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#FD2712">Ejemplo con un caso de uso</font></div>
+<div><font color="#0A0001">Ahora traigamos las 4 areas de la matriz DevOps ademas de Kangan para señalar un ejemplo de un caso de uso.</font></div>
+<div><font color="#0A0001">Primero un acercamiento “anarquico” y luego una propuesta DevOps + Kanban.</font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><u>El enfoque anárquico</u></font></div>
+<div><font color="#0A0001">Un equipo de desarrollo tiene varios grupos por componentes (cada grupo trabaja en un artefacto de software).</font></div>
+<div><font color="#0A0001">Cada grupo tiene su propio backlog donde ellos manejan los cambios.</font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_3_2.png" height="371" width="553"/><font color="#0A0001"><br/></font></div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/7.png" height="65" width="552"/><br/></div>
+<div><br/></div>
+<div>A veces este backlog tiene solicitudes a operaciones.     El trabajo en el equipo de desarrollo esta organizado como un proyecto, por otro lado operaciones es solo una persona manteniendo la infraestructura, ademas es el responsable del software delivery.     Esta persona recibe las solicitudes de desarrollo y manejas incidencias en los ambientes de producción y test.</div>
+<div>Operaciones mantiene un backlog de trabajo.     En reuniones de planificación los grupos de desarrollo se sincronizan y dan prioridad a las solicitudes para operaciones.     A pesar de esto el trabajo es constantemente interrumpido por incidentes que requieren mantencion de los sistemas (trabajo no planificado) ademas de solicitudes que no han sido atendidas y estan pendientes. </div>
+<div>En este ejemplo WIP no ha sido utilizado, operaciones trabaja en 4 items en paralelo, eso es la norma y no la excepción.</div>
+<div>Existe un servicio expedito pero la linea es muy delgada entre expedito y estandar por lo que se pierde el sentido de la prioridad.     Este proceso se ha transformado en algo que no merece el nombre de proceso.</div>
+<div>La priorizacion es muy inestable, nuevas solicitudes para operaciones son comunicadas no solo por el equipo de desarrollo, managers y testers tambien tienen solicitudes.     El tiempo promedio de los cambios desde desarrollo a producción es de 60 dias promedio.     La linea expedita fue diseñada para tener cambios en producción en 5 dias.</div>
+<div>Esto provoca que muchas solicitudes sean por este canal para tener los cambios en producción de manera mas rapida provocando el colapso de la linea expedita.</div>
+<div>Los puntos mas conflictivos de este enfoque son:</div>
+<div>
+<ul>
+<li>WIP masivo con cambio de contexto intenso.</li>
+<li>Un alto número de tareas “externas” interrumpen constantemente las tareas planeadas.</li>
+<li>Falta de una planificación confiable debido a enorme número de incidentes y replanificación.</li>
+<li>Poco tiempo para tareas internas que aseguren calidad (del punto de vista de operaciones).</li>
+<li>El juego de las acusaciones, nadie da un paso adelante para solucionar los problemas, en cambio se culpa a otros.</li>
+<li>El proceso empuja las tareas, no las “jala”.</li>
+</ul>
+<div>Estos problemas conllevan a lo siguiente:</div>
+</div>
+<div>
+<ul>
+<li>Perdida de credibilidad y respeto a operaciones.</li>
+<li>Baja la calidad de los entregables.</li>
+<li>Cultura patológica enfocada en los problemas en vez de soluciones.</li>
+<li>Status de los proyectos sin transparencia (calidad externa vs calidad interna propensa a fallos).</li>
+<li>Falta de documentación, muchos detalles de las tareas no se realizan por falta de tiempo, esto afecta a la calidad, la documentación o ambos.</li>
+<li>Muchos tickets en cola, pésimo ciclo de entregas</li>
+</ul>
+<div><br/></div>
+El problema principal es el calendario demasiado ajustado, incluso llegando a utilizar la linea expedita, esto lleva a que operaciones esta permanentemente enfocado en incidentes y actividades de los proyectos.     El cambio de contexto extremo es similar a estar apagando incendios.     Al hacer un trabajo apurado, esto se traduce en mas trabajo a realizar en el futuro, con el tiempo esta deuda técnica aumenta provocando un mayor número de incidentes diarios, los que reducen el tiempo para trabajar en proyectos o nuevas caracteristicas.</div>
+<div><br/></div>
+<div><br/></div>
+<div><u>El enfoque mejorado</u></div>
+<div>Luego de analizar el problema esta es la propuesta para mejora.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/6.png" height="462" width="578"/><br/></div>
+<div>
+<ul>
+<li>Se evalua la data y se identifican los puntos mas críticos.</li>
+<li>Se definen los inicios y terminos de puntos de control (por ejemplo donde comenzar y terminar el proceso de visualización).</li>
+<li>Se analiza el valor del flujo (por ejemplo se identifican los diferentes pasos en el proceso y cuanto tiempo toma a un item avanzar por estos pasos).</li>
+</ul>
+<div><br/></div>
+</div>
+<div>VALUE STREAM MAPPING</div>
+<div><br/></div>
+<div>Es un dibujo de la linea de tiempo desde que el cliente ingresa una orden hasta que que cobra por el producto terminado.</div>
+<div>La linea de tiempo se reduce eliminando pasos que no entregan valor.</div>
+<div>“El value stream map es una linea de tiempo de los eventos importantes desde el momento que se inicia el reloj hasta que se detiene.     El objetivo es reducir la linea de tiempo del desarrollo al remover tareas que no entregan valor”.</div>
+<div><br/></div>
+<div>Los principales cambios comparado con el enfoque inicial son los siguientes:</div>
+<div>
+<ul>
+<li>La cantidad de WIP es reducida.</li>
+<li>Hay mas enfasis en la planificación colaborativa (devs junto con ops) y en anticipar sucesos para reducir actividades no programadas con re priorización continua.</li>
+<li>El WIP de cada equipo esta alineado con su capacidad definida.</li>
+<li>La integración con otros equipos esta mas integrada y sincronizada.</li>
+<li>Los incidentes (tarea no planeada)  son filtradas por el gatekeeper para determinar priorización (pueden ser atendidos inmediatamente o movidos al backlog).</li>
+<li>Los equipos construyen confianza a traves del value stream.</li>
+<li>Los equipos son empoderados, desarrollo puede trabajar sin consultar a operaciones, por ejemplo, se les permite ver logs de producción para monitorio de bugs de las aplicaciones (Jenkins puede ayudar a esto).</li>
+<li>Las prioridades se estabilizan.</li>
+<li>Las tareas son visibles en una tabla Kanban, la que es usada por devs y ops.</li>
+<li>Las reuniones son atendidas por devs y ops, donde se discuten cambios futuros, además de requerimientos no funcionales.</li>
+<li>El nivel de automatización se incrementa, se utiliza Puppet permitiendo un proceso con feedback mas rapido y se contruye un proceso mas confiable y eficiente.</li>
+</ul>
+<div><br/></div>
+</div>
+<div>La creación de un gatekeeper mejora el ciclo de manera dramática, los incidentes no son priorizados por operaciones, sino que el gatekeeper fomenta la colaboración y comunicación de todos los involucrados.</div>
+<div>Las ventajas de tener un gatekeeper son:</div>
+<div>
+<ul>
+<li>Sirve como un difusor de información y mejora la comunicación y el comocimiento compartido entre dev y ops.</li>
+<li>Libera tiempo a operaciones para trabajar en tareas asignadas, tanto asignadas como incidentes (tarea no planeada).</li>
+<li>Minimiza dramaticamente el cambio de contexto en operaciones.</li>
+</ul>
+<div>Ademas del gatekeeper, se ha enfatizado la visibilidad de la calidad y problemas de los procesos.     Se ha reducido dramaticamente la falla de tareas al reducir el WIP e introducir tajadas de tiempo para permitir mejora contínua.</div>
+<div><br/></div>
+<div>LAS RAICES DE DEVOPS ESTAN EN LOS PARADIGMAS AGILES ENFOCADOS EN SOLUCIONES, NO PROBLEMAS.</div>
+<div><br/></div>
+<div>Operaciones es capaz de completar tareas regulares en 2 dias promedio, el WIP fue seteado a 2, la linea expedita fue reducida a 1, este número evita el uso de la linea expedita, ademas el gatekeeper monitorea el flujo constantemente.</div>
+<div>El enfoque general del trabajo e basicamente el mismo pero estas pequeñas modificaciones resultaron en mejoras notorias.     Cambios holisticos/sinergicos deben ser realizados para lograr mejoras.</div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div style="text-align: center;"><b><font color="#FF3539">Capitulo 7 Enfoque unificado y holistico</font></b></div>
+<div style="text-align: center;"><b><font color="#FF3539"><br/></font></b></div>
+<div style="text-align: left;"><font color="#FF3539"><b>Comenzando con Conceptos</b></font></div>
+<div style="text-align: left;"><font color="#170202">Un concepto es un plan para generar mas valor al negocio.     Debe entregar información detallada sobre que debe hacerse y por quien para generar mas valor.     Consiste en procesos y workflows definidos de manera consistente.</font></div>
+<div style="text-align: left;"><font color="#170202">Es muy importante definir la forma de este concepto de manera muy clara ya que es prerequisito para automatizar procesos.</font></div>
+<div style="text-align: left;"><font color="#170202">Debe ser lo suficientemente detallado para que cada equipo (dev y ops) lo entienda y lo vea factible.</font></div>
+<div style="text-align: left;"><font color="#170202"><br/></font></div>
+<div style="text-align: left;"><font color="#FF3239">Requerimientos no funcionales</font></div>
+<div style="text-align: left;"><font color="#170202">Para agrupar los requerimientos se define FURPS (functionality, usability, reliability, performance and supportability)</font></div>
+<div style="text-align: left;">
+<ul>
+<li><font color="#170202">Functionality: Que hace el sistema para el usuario</font></li>
+<li><font color="#170202">Usability: Que tan facil es para el usuario lograr que el sistema lo haga.</font></li>
+<li><font color="#170202">Reliability: Esto incluye disponibilidad y MTTR (capitulo 3)</font></li>
+<li><font color="#170202">Performance: Que tan seguido y cuantas veces puede hacerse la tarea, incluye capacidad y escalabilidad</font></li>
+<li><font color="#170202">Supportability: Que tan facil es de mantener y extender el sistema, también es llamado mantención.</font></li>
+</ul>
+<div><font color="#170202">La parte URPS de FURPS es utilizada para organizar requerimientos no funcionales.     Estos son muy importantes para operaciones.     Un requerimiento no funcional por lo general se define del punto de vista del usuario.</font></div>
+<div><font color="#170202"><br/></font></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_1_1.png" height="440" width="572"/><font color="#170202"><br/></font></div>
+<div><br/></div>
+<div>Muchos requerimientos no funcionales pueden ser considerados una limitación en el comportamiento del sistema.</div>
+<div>Esta tabla muestra restricciones tipicas.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_2.png" height="330" width="558"/><br/></div>
+<div><br/></div>
+<div>Es muy importante compartir estos requerimientos con todos los miembros del proyecto para trabajar de manera colaborativa.     Por lo general se presentan en documentos de texto (previamiente guardados en un versionador como github) o como entradas en una herramienta como JIRA.</div>
+<div><br/></div>
+<div>Deficit conceptual</div>
+<div>Puede terminar con el concepto incompleto, equivocado o con requerimientos no funcionales sin implementar.     Esto puede generar confusión entre dev y ops.</div>
+<div>El el capitulo 2 de discuten los conflictos entre dev y ops,     Esto ocurre porque porque generalmente se excluyen otros equipos o roles (como operaciones).     Esto se traduce en conceptos incompletos lo que se traduce en expectativas equivocadas, requerimientos imposibles y especificaciones no implementadas.     Lo peor es que estos deficit pueden permanecer invisibles hasta que se involucra operaciones.     Relaciones de poder y confianza entre los equipos son clave para que el departamento de TI entregue soluciones de sumen valor.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_3_1.png" height="635" width="558"/><br/></div>
+<div><br/></div>
+<div><font color="#FF3239">Origenes del deficit en conceptos</font></div>
+<div>Pueden ocurrir accidentalmente o de manera intencional, si es accidental esto puede ser por la complejidad o los limites racionales propios de un ambiente dinámico.</div>
+<div>Por el contrario, si el deficit es <b>intencional,</b> estamos ante un riesgo moral (moral hazard) lo que se define como una discrepancia entre la racionalidad individual y colectiva.</div>
+<div><br/></div>
+<div><u>Racionalidad limitada</u></div>
+<div>Se refiere a que se asume que muchos modelos comunicacionales son formados por la estructura siquica propuesta por Freud y el principio de Pareto.     La primera teoria indica que existe un inconsciente en los humanos, lo que nos lleva a pensamientos inconscientes.</div>
+<div>La siguiente teoria indica que esta relación tiene una relación 80/20, lo que nos lleva al modelo del iceberg que segun Freud se divide en 3 partes:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_4.png" height="464" width="567"/><br/></div>
+<div><br/></div>
+<div>
+<ul>
+<li>La linea de flotación representa la frontera entre el conocimiento consciente y las actividades inconscientes.</li>
+<li>El ego es la parte que coordina las necesidades internas y externas bajo las ideas internalizadas del super ego y las motivaciones personales mas profundas.</li>
+<li>El super ego se forma segun nuestra educación y experiencias.   Las ideas internalizadas estan menos anidadas una de otra.    Como los pensamientos en el ego, estos estan relacionados a unas pocas experiencias significativas en la vida.</li>
+</ul>
+<div>El desafio es romper la recionalidad limitada aplicando conocimiento y discusión de una manera transparente, independiente de si el resultado cumple las expectativas de todos los presentes.</div>
+</div>
+<div>La jefatura por lo general no tiene una visión general (big picture) y solo se enfoca en los deseos relevantes a sus necesidades inmediatas.     Para romper la racionalidad limitada la jefatura debe ver mas alla de las preocupaciones diarias  y colaborar hasta que todos los actores esten en la misma pagina respecto a la visión general (big picture).</div>
+<div><br/></div>
+<div><u>Ambientes dinamicos y complejos.</u></div>
+<div>Los procesos corporativos son complejos, los efectos al hacer cambios a estos procesos no siempre se pueden predecir.</div>
+<div>El deficit conceptual se origina en ambientes complejos y dinamicos, los que tambien se pueden describir en los siguientes parrafos:</div>
+<div>
+<ul>
+<li>La jefatura no siempre esta consciente de todas las dependencias de sus acciones y deseos: Este escenario se enfoca a situaciones en que no todos los aspectos relevantes de una nueva caracteristica son entendidos por la jefatura, esto por lo general se traduce en conceptos incompletos.</li>
+<li>La jefatura no esta siempre informada:   Similar al primer item, una solución evoluciona y todo un departamento puede tener sus propias conclusiones respecto a un problema si la jefatura no se involucra.      Esto lleva a que las ideas del departamento sean contrarias a la de la jefatura.</li>
+<li>La jefatura no esta organizada y conectada de la manera correcta:  Tal desorganización contamina al resto de la organización con problemas que no son parte de la organización.</li>
+</ul>
+<div>Compromiso y atención de la jefatura son criticos para el exito de DevOps.</div>
+</div>
+<div><br/></div>
+<div><u>El problema Principal-Agent</u></div>
+<div>También conocido como el dilema de la agencia describe los desafios bajo condiciones de información incompleta y asimetrica.     Estos problemas se asentuan si la jefatura contrata un proveedor que debe trabajar en un producto que genere valor para la jefatura.</div>
+<div>Muy a menudo las “acciones ocultas” y la “información oculta” aparecen cuando el proveedor ya ejecutó su trabajo.</div>
+<div>Las acciones ocultas son oportunidades en las que el proveedor actuó libremente mientras que la jefatura no fue capas de hacer seguimiento a estas acciones.</div>
+<div>La información oculta existe si la jefatura tiene un buen seguimiento de las actividades del proveedor pero no tiene el conocimiento técnico suficiente.</div>
+<div><br/></div>
+<div>Estos problemas se pueden mitigar de la siguiente manera:</div>
+<div>
+<ul>
+<li>Señalización: El proveedor debe comunicar sus habilidades y experiencia de manera activa.</li>
+<li>Visualización: Investigar posibles proveedores.</li>
+<li>Examinar el historial y reputación del proveedor.</li>
+<li>Entregar incentivos apropiados al proveedor.</li>
+<li>Construir confianza entre la jefatura y el proveedor.</li>
+<li>Examinar la cultura del proveedor.</li>
+<li>Compartir valores y objetivos entre la jefatura y el proveedor.</li>
+</ul>
+<div>En estos escenarios, problemas como el riesgo moral pueden aparecer.</div>
+</div>
+<div><br/></div>
+<div><font color="#FF2800">Riesgo Moral</font></div>
+<div>Aparece cuando la la racionalidad individual no concuerda con la racionalidad colectiva.     Cuando roles y equipos (devs, ops, jefatura) se disputan el poder, la irracionalidad aparece y facilmente pueden perderse los objetivos que el negocio necesita.     Esto combinado con la desproporcionada solicitud de reportes y avances puede crear un ambiente de conspiración entre la jefatura y dev/ops.</div>
+<div>Por lo tanto devs como ops pueden experimentar el riesgo moral.     Este riesgo es creado como parte de un ciclo que repetidamente de inicia cuando se realizan cambios al sistema (nuevas ideas de negocio o requerimientos funcionales y no funcionales).</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_1_3.png" height="544" width="554"/><br/></div>
+<div><br/></div>
+<div>Este ciclo muestra como emergen los patrones de comportamiento moral, los que nos llevan a costos mas elevados y a la necesidad de nuevos cambios.</div>
+<div>El costo del riesgo moral se hace evidente si nos imaginamos personas que utiliza recursos de la organización para su propio bien.     La organización en si misma es responsable de crear nuevas oportunidades de riesgo moral al crear nuevas reglas o al no identificar vacíos en ciertas regulaciones.     Estos pueden ser mal utilizados por un miembro de la organización.     Estas oportunidades crean incentivos negativos a los empleados, los que por lo general dejan de compartir su conocimiento util para obtener beneficio propio desde estos vacíos en ciertas regulaciones.</div>
+<div>El riesgo moral ocurre cuando las personas usan su conocimiento para obtener beneficios personales con el objetivo de obtener mas poder o dinero.</div>
+<div><br/></div>
+<div>El riesgo moral se traduce en mas costos para la compañia, la mejor manera de minimizar el problema es a traves de la transparencia.     </div>
+<div>Las personas bajo riesgo moral saben ocultar sus movimientos, por lo que un objetivo en las compañias es reducir la posibilidad de encontrar vacios que puedan ser aprovechados.     Muchas de las personas bajo riesgo moral utilizas las coartadas y excusas como parte de su rutina.     Un indicador que nos delata este comportamiento es la negación a utilizar herramientas de estadistica, logs, historiales, etc. tanto para trabajo técnico como funcional.</div>
+<div>Si la transparencia existe, devs y ops pueden rastrear facilmente cualquier problema o mal entendido, lo que evitará mala reputación y explicaciones poco creibles.</div>
+<div><br/></div>
+<div><br/></div>
+<div><font color="#FF2800">Atributos de un enfoque unificado</font></div>
+<div>Permite que devs y ops creen conceptos colaborativamente.     Un enfoque unificado minimiza deficit conceptual y de haberlos se detectan de manera temprana.     Estos atributos a continuación son clave para crear conceptos de calidad.</div>
+<div><br/></div>
+<div><u>Fomentar la trasabilidad</u></div>
+<div>Los artefactos deben ser creados paso a paso y estos pueden ser compartidos con otros en cualquier momento (entre la creación y cuando ya se están utilizando.       ya que todos los pasos son una confirmación del paso anterior, todo esto aporta a la creación de un concepto confiable y correcto.        La creación de un concepto es por lo tanto un proceso complejo, distribuido e iterativo.</div>
+<div>Para permitir el entendimiento, el equipo del proyecto necesita de la trasabilidad, es basico para ilustrar todos los pasos o etapas desde la idea a requerimientos concretos e implementación.     Esto se puede lograr seteando un flujo de valor (capitulo 6).</div>
+<div>Un prerequisito  para la trasabilidad es que los requerimientos esten documentados correctamente.</div>
+<div>Un buen enfoque es el que se da en el libro “software architecture in practice”.     Otro enfoque puede ser un desarrollo basado en tareas, en que cada item trabajado esta ligado a otro item.     Otro enfoque es relacionar los requerimientos no funcionales a casos de usos.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_2_2.png" height="373" width="561"/><br/></div>
+<div><br/></div>
+<div>Esta figura ilustra como distintos artefactos estan relacionados logicamente desde un identificador unico (este identificador es incluido en el codigo del software a traves de comentarios).     Esta relacion mejora la trasabilidad.</div>
+<div>Los casos de uso pueden gatillar requerimientos funcionales y no funcionales, los que pueden terminar en codigo o infraestructura (ver capitulo 9).</div>
+<div>La manera mas facil de visualizar la trasabilidad es a traves de un mosaico, como en la imagen de ejemplo.</div>
+<div><br/></div>
+<div><br/></div>
+<div><u>Revisar requerimientos no funcionales</u></div>
+<div>Es importante considerarlos desde el inicio del proceso de desarrollo ya que es muy caro o imposible de implementar requerimientos no funcionales luego de entrar a producción.     El codigo que cumple req. no funcionales debe ser limpio, simple y testeable.     Por ejemplo Google tiene testeos de carga como parte de su pipeline de continuos integration.</div>
+<div>otro ejemplo es chaos monkey de Netflix que bota nodos al azar en ambientes productivos.</div>
+<div><br/></div>
+<div><br/></div>
+<div><u>Alinear objetivos</u></div>
+<div>A veces la jefatura no esta alineada con los objetivos de la compañia en general, lo que se traduce es un departamento rebelde que tiene agendas ocultas.     Muchas veces estas diferencias son faciles de esconder ya que la jefatura solo reporta a la alta gerencia.     De haber sospechas de la alta gerencia, por lo general se declara como un problema tecnico hasta que otros departamentos prueban que es un problema de conceptos.</div>
+<div>La jefatura de TI por lo general es una parte pequeña de toda la compañia por lo que se teme sufrir perdida de reputación si se dan informes seguidos.     Esto ocurre porque la causa y efecto que puede generar un mal concepto no es facil de explicar a la alta gerencia. mas sobre como alinear objetivos en el capitulo 5</div>
+<div>Crear conceptos es muy importante para dev y ops con el fin de lograr acuerdos.     Es por esto que es muy importante que toda la documentación sea de facil acceso ya que si no hay entendimiento mutuo es fácil revisar los acuerdos previos.</div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div>
+<div style="text-align: center;"><strong><span style="font-size: 14px; color: rgb(255, 0, 0);">Parte 3</span></strong></div>
+<div style="text-align: center;"><font color="#FF0000"><span style="font-size: 14px;"><b>Vista técnica</b></span></font></div>
+</div>
+<div style="text-align: center;"><font color="#FF0000"><span style="font-size: 14px;"><b><br/></b></span></font></div>
+<div style="text-align: left;"><font color="#060000">Esta es la ultima parte, revisaremos los componentes tecnicos que comprenden DevOps.     Se aprenderan las herramientas basicas para automatizar el proceso de publicar software y obtener feedback rapido.</font></div>
+<div style="text-align: left;"><font color="#060000"><br/></font></div>
+<div style="text-align: left;"><font color="#060000"><br/></font></div>
+<div style="text-align: center;"><b style="font-size: 14px;"><font color="#FE2700">Capitulo 8 Liberación automatizada</font></b></div>
+<div style="text-align: center;"><b style="font-size: 14px;"><font color="#FE2700"><br/></font></b></div>
+<div style="text-align: left;"><font color="#040000">La liberación automatizada reduce el riesgo al liberar el software y a la vez ayuda a obtener feedback.     Automatizar tareas repetitivas, con tendencia al error y que consumen tiempo son esenciales de automatizar.</font></div>
+<div style="text-align: left;"><font color="#040000"><br/></font></div>
+<div style="text-align: left;"><font color="#FF2700">Prerequisitos para la liberación automatizada</font></div>
+<div style="text-align: left;"><font color="#040000">Liberar significa integrar el trabajo del equipo, linkear, empaquetar y deployar el software al ambiente necesario.</font></div>
+<div style="text-align: left;"><font color="#040000">Lo esencial antes de la liberación es administrar la infraestructura, instalar versiones de software correctas y configurar según lo especificado para el ambiente.</font></div>
+<div style="text-align: left;"><font color="#040000">Deployment no es lo mismo que liberar, al liberar se entrega una versión funcional del software al usuario.</font></div>
+<div style="text-align: left;"><font color="#040000"><br/></font></div>
+<div style="text-align: left;"><font color="#FF2700">Ambientes e infraestructura</font></div>
+<div style="text-align: left;"><font color="#040000">Ambiente son todos los recursos que la app/servicio requiere con respectivas configuraciones además del hardware correspondiente, sistema operativo y middleware.</font></div>
+<div style="text-align: left;"><font color="#040000">Infraestructura son todos los ambientes de la organización destinados a soportar apps y servicios ademas de firewalls y sistemas de monitoreo que analizan todos los ambientes.</font></div>
+<div style="text-align: left;"><font color="#040000"><br/></font></div>
+<div style="text-align: left;"><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_3_3.png" height="456" width="560"/><font color="#040000"><br/></font></div>
+<div style="text-align: left;"><br/></div>
+<div style="text-align: left;">Las actividades realizadas por personas deben ser las que solamente pueden ser realizadas por personas.     Scripts y otras herramientas deben ser usadas para tareas repetitivas.</div>
+<div style="text-align: left;">Los pre requisitos para un proceso de liberación automatizada son:</div>
+<div style="text-align: left;">
+<ul>
+<li>Promover el compromiso del equipo en un ambiente de trabajo colaborativo.</li>
+<li>usar herramientas altamente integradas a la cadena de producción (como jenkins, maven, etc) que son elegidas según la necesidad de los requerimientos.     Requerimientos individuales deben ser la base para decidir entre una herramienta sobre otra.</li>
+<li>Poner items de configuración (como fuentes, scripts, middleware, infraestructura, configuraciones) en un controlador de versiones.</li>
+<li>Usar formato declarativo para configurar la automatización y el proceso de liberación.</li>
+<li>Declarar explicitamente y aislar dependencias entre aplicaciones, middleware e infraestructura. <br/></li>
+<li>Aplicar continuos integration que constantemente sincroniza el trabajo de colegas y se preocupa de que las personas realicen lo siguiente:</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li>No hacer checkin (commit al controlador de versiones) si el build esta roto en ese momento especifico, por el contrario el build debe ser corregido inmediatamente.</li>
+<li>Apegarse al proceso al momento de hacer checkin, el codigo debe compilar y los tests deben ejecutarse sin problemas.</li>
+<li>Reparar tests rotos, no se comentan, se borran o eliminan del build.</li>
+<li>Integración de todos los tipos de artefactos, incluyendo fuentes, scripts de DB y scripts de infraestructura.</li>
+</ul>
+</li>
+<li>Distinguir entre un controlador de versiones (como svn o git) donde se guardan fuentes y componentes y un repositorio de paquetes (como YUM) donde el software se guarda como binario.</li>
+<li>Deployments “de humo” para asegurarse que el deployment salió bien (capitulo 3).</li>
+<li>Mantener ambientes similares entre dev y ops (mantenerlos exactamente igual no siempre es posible por req. no funcionales).</li>
+<li>Definir un proceso, esto tambien debe incluir parchados y rollbacks en ambientes productivos.</li>
+<li>Cubrir tareas repetitivas y que consumen tiempo mediante automatización.     Hay que intentar automatizar lo maximo posible pero siempre considerando la paradoja de la automatización (capitulo 3)</li>
+<li>Asegurarse de que el software liberado fue construido solo por el build server y no por dev u ops, esto para asegurar  reproducibilidad.</li>
+</ul>
+<div>Una vez aprendido sobre los pre requisitos para la automatización, estamos listos para conocer patrones y sus herramientas.</div>
+<div><br/></div>
+<div><font color="#FF2700">Patrones con las herramientas apropiadas</font></div>
+<div>estas son guias y ejemplos para implementar automatización de manera satisfactoria.</div>
+<div>Se nombraran herramientas especificas pero esto no significa que no existan mejores soluciones para las necesidades de cada negocio.</div>
+<div><br/></div>
+<div><u>usar delivery pipelines</u></div>
+<div>Tambien llamadas build pipelines son una serie de pasos interdependientes para liberar software.</div>
+<div>
+<ul>
+<li>Compilar el software</li>
+<li>Ejecutar tests unitarios</li>
+<li>Ejecutar auditorias o metricas</li>
+<li>Empaquetar y linkear el software</li>
+<li>Deployar la aplicación con todas sus partes con sus versiones correspondientes (por ejemplo DB y elementos de infraestructura).</li>
+<li>Crear backups del sistema.</li>
+<li>Configurar la aplicacion (durante el deployment o en tiempo de ejecución).</li>
+<li>Preparar y migrar la data si es necesario.</li>
+<li>Testeo “de humo” de la aplicación o deployment.</li>
+<li>Testeo automatizado de aceptación, la app esta haciendo lo que tiene que hacer?</li>
+<li>Testeo manual, luego de todo lo anterior, se enfoca en la eperiencia personal responsabilidades de cada testeador (que se enfoca en lo que trabajó) para ayudar a realizar testeo de diseño y de ejecución simultaneamente.</li>
+<li>Promover la aplicación (aprovación) que respalda el candidato a ser liberado.</li>
+<li>Crear maquinas virtuales, redes, balanceadores, monitores y otros elementos de infraestructura necesarios.</li>
+<li>Monitorear la aplicación en producción.</li>
+</ul>
+<div>Este pipeline es una metafora del proceso de entrega de software.     Indica que losa cambios de software son la entrada al proceso (pipeline) y automaticamente se va moviendo por todo el proceso hasta el fin del pipeline, lo que sería el ambiente productivo.</div>
+</div>
+<div><br/></div>
+<div>Ejemplos de pipelines</div>
+<div>En este ejemplo, el build continuo testea y deploya una version de desarrollo de un binario a un ambiente objetivo (por ejemplo una app web a un contenerdor web).     Como ejemplo considerar un build basado en Maven donde se quiere compartir las nuevas versiones de desarrollo (snapshot) con tus colegas.     Luego el codigo puede ser inspeccionado con, por ejemplo Sonar.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_4_1.png" height="475" width="556"/><br/></div>
+<div>Luego de haber verificado que el código satisface las necesidades, (test and quality) esta versión se congela en el controlador de versiones (linea base, tagging o etiquetado).     Este es un candidato a liberación de una versión especifica del software.     Luego de esto un release build es creado, este promociona el candidato existente a ser elegible para producción.      Se preparan los artefactos de liberación y se deploya.</div>
+<div>Req. no funcionales (NFR) se testean antes de salir a producción.</div>
+<div>Obviamente este proceso es un subconjunto de un pipeline promedio.     En la realidad habran pasos mas detallados para poder deployar software a un ambiente objetivo.</div>
+<div><br/></div>
+<div>Otro ejemplo basado en el anterior crea la linea base (tagging) luego de realizar el deployment de los artefactos y antes de de los test NFR.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_5.png" height="503" width="559"/><br/></div>
+<div><br/></div>
+<div><u>Usar lineas de base</u></div>
+<div>Una linea base es una especificación o producto previamente revisado y acordado y sirve como base para desarrollos posteriores.     Una linea de base es usualmente un tag o etiqueta en el controlador de versiones.</div>
+<div><br/></div>
+<div>Creando lineas bases</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_6.png" height="616" width="544"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_7_1.png" height="494" width="550"/><br/></div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_8_1.png" height="390" width="543"/><br/></div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_9.png" height="831" width="563"/><br/></div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_10_1.png" height="907" width="556"/><br/></div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_11_1.png" height="892" width="560"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_12.png" height="903" width="556"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_13.png" height="874" width="557"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_14.png" height="881" width="560"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_15.png" height="823" width="552"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_16.png" height="803" width="550"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_17.png" height="856" width="557"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_18.png" height="906" width="549"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_19.png" height="896" width="562"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_20.png" height="904" width="574"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_21.png" height="833" width="553"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_22.png" height="848" width="568"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_23.png" height="889" width="556"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_24.png" height="913" width="550"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_25.png" height="909" width="550"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_26.png" height="108" width="552"/><br/></div>
+<div><br/></div>
+<div style="text-align: center;"><span style="font-size: 14px;"><font color="#FF2D00"><b>Capitulo 9 Infraestructura como código</b></font></span></div>
+<div style="text-align: center;"><span style="font-size: 14px;"><font color="#FF2D00"><b><br/></b></font></span></div>
+<div style="text-align: left;"><font color="#070100">Clasicamente infraestructura resume items como OS, servers, switches, routers, etc.     Segun otras definiciones , infraestructura comprende todos los ambientes de una organización mas los servicios que lo soportan como firewalls y sistemas de monitoreo.</font></div>
+<div style="text-align: left;"><font color="#070100">El termino infraestructura como código es bastante popular hoy en dia.     Bajo este contexto infraestructura se entiende como cada parte de una solución que no es el desarrollo de software en si mismo.     Bajo esta definición infraestructura tambien incluye middleware (config files, OS packages, crontabs, etc).</font></div>
+<div style="text-align: left;"><font color="#070100">Por lo general no es fácil reconstruir la infraestructura desde cero si el negocio lo necesita.</font></div>
+<div style="text-align: left;"><font color="#070100">IaaC nació con la idea me manejar la infraestructura de la misma manera que el desarrollo de código.</font></div>
+<div>En este capitulo se utilizaran herramientas como Vagrant y Puppet</div>
+<div><br/></div>
+<div><font color="#FF2D00">Comenzando con IaaC</font></div>
+<div>El mantenimiento automatizado de la infraestructura existe desde antes del movimiento agile y DevOps, pero lo general era de una manera artesanal mediante scripts, poco entendible para el que no escribió el script.</div>
+<div>Recientemiente nuevas herramientas de config. management empezaron a ganar popularidad.</div>
+<div>Esto es de vital importancia porque cada dia los sistemas son mas complejos y distribuidos.     Existe la necesidad de que devs tengan conocimientos de ops y viceversa.     IaaC y sus herramientas son un paradigma que resuelve esta problematica.</div>
+<div>Hay 2 preguntas muy importantes que responder.</div>
+<div>
+<ul>
+<li>Por que deberia adoptar infraestructura como codigo?</li>
+<li>Como deberia hacerlo? Que herramientas a usar?</li>
+</ul>
+Para responder estas preguntas, revisemos el proceso involucrado para configurar la infraestructura para una aplicación web.</div>
+<div><br/></div>
+<div><u>Manejo tradicional de estructura</u><br/></div>
+<div>En la primera etapa la arquitectura aún no esta definida, devs prueban componentes hasta que eventualmente tienen un borrador de la configuración.     Ahora cada dev configura de manera local el ambiente con todos los componentes corriendo en la maquina.</div>
+<div>A esta altura ni siquiera hay un ambiente compartido en donde el software pueda ser deployado constantemente.</div>
+<div>Este deberia ser el siguiente paso: Dependiendo de la estructura de la organización, este ya podria ser el limite en que los devs no tienen acceso total a las maquinas y deben entregar a operaciones asistencia para realizar lo que sea necesario.</div>
+<div>Lo mismo puede ocurrir con QA, staging y ambientes de producción.     En la practica, como mínimo se realizaran reconfiguraciones de componentes o componentes ya existentes pueden ser agregados durante el desarrollo del software.</div>
+<div><br/></div>
+<div>Cada vez que devs intentan hacer algo en sus maquinas locales o ambientes de test, ellos reportaran los cambios de infraestructura a operaciones, los que luego ajustaran los otros ambientes.     Se podria pensar que esto es una estupides si se esta trabajando en una startup o una compañia pequeña pero lamentablemente esta es muy a menudo la realidad en grandes corporaciones y obviamente el potencial de error y mal entendidos es muy alto.     La no documentación o documentación en documentos Office no son lo optimo.</div>
+<div><br/></div>
+<div>Los mismos problemas se pueden presentar si nuevos devs se integran al equipo.     Si la configuración no esta totalmente documentada o si alguien hizo un script que automatiza parte de la configuración o si la documentación esta desactualizada, el nuevo dev tendrá que esforzarse para tener todo corriendo de manera impecable y encontrar un error se puede transformar en buscar una aguja en un pajar.     No hay una versión centralizada y versionada de la infraestructura que pueda ser considerada como siempre aplicable.</div>
+<div><br/></div>
+<div><br/></div>
+<div><u>Como hacerlo mejor</u></div>
+<div>Asumiendo que devs no tienen que configurar cosas a mano o con scripts (sin considerar el riesgo de que el script no sea factible de ejecutar por ops porque puede interferir otras configuraciones) pero si pueden escribir especificaciones, además de utilizar virtualización para crear y destruir ambientes según la necesidad.</div>
+<div><br/></div>
+<div>Integrar nuevos desarrolladores deberia ser tan sencillo como que ellos hagan un checkout de las especificaciones en el controlador de versiones, ejecutarlas y utilizar el mismo ambiente que sus colegas.     Si el equipo decide que los cambios a la infraestructura al logrado una nivel estable, la especificacion puede ser utilizada para actualizar cualquier ambiente compartido (por ejemplo testing) y puede ser entregada a operaciones, los que pueden reutilizar la especificación para staging y ambientes prodcutivos.</div>
+<div>Suena muy bien, cierto?</div>
+<div><br/></div>
+<div>En este capitulo se presentaran 2 herramientas: Vagant y Puppet.     Vagrant permite construir facilmente ambientes virtuales portables y livianos, estos se basan en una descripción en texto.     Puppet es una herramienta de configuration management que usa sintaxis declarativa para describir el estado deseado de un ambiente y permite que esta descripción sea ejecutada para crear ese estado en la maquina.     En combinación esto nos lleva  a describir una topologia, similar a este grafico:</div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_27.png" height="780" width="561"/><br/></div>
+<div><br/></div>
+<div>En la mitad de la solución, Vagrant se utiliza para configurar ambientes de desarrollo y test (como maquinas virtuales).     Puppet se utiliza para provisionar infraestructura.</div>
+<div><br/></div>
+<div>Archivos de configuración, tanto para Puppet o Vagrant son versionados en el controlador de versiones, lo que nos lleva a todos sus beneficios, tales como control de los cambios y compartir cambios a todo el equipo.     Un servidor de integración continua (CI), como Jenkins, escucha los cambios en el controlador de versiones y propaga las nuevas versiones a los ambientes objetivos de manera automatica.</div>
+<div>Suena magico?  Lo es, pero no se deben asustar, vamos a examinar esto y mucho mas con mayor detalle en este capitulo.     Ahora comencemos con los ambientes de test utilizando Vagrant.</div>
+<div><br/></div>
+<div><br/></div>
+<div>Ambientes de Test con Vagrant</div>
+<div>Vagrant nos permite construir ambientes virtuales de manera sencilla, basado en una especificación textual en el llamado Vagrant file.     Este archivo es todo lo que se necesita para crear un ambiente virtual desde cero.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_28.png" height="51" width="547"/><br/></div>
+<div><br/></div>
+<div>El termino “ambiente virtual” describe la manera en que se entregan recursos computacionales que son independientes de maquinas fisicas.     Un ambiente virtual permite ejecutar escritorios, servidores u otras soluciones virtuales.     La ventaja de un ambiente virtual es que utiliza de manera mas eficiente el hardware, lo que disminuye costos.</div>
+<div><br/></div>
+<div>Vagrant se basa en Ruby y utiliza Oracle Virtualbox para ejecutar las maquinas virtuales, se necesitan ambos antes de realizar la instalación.     La manera mas facil es instalar Vagrant mediante RubyGems:</div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_29.png" height="24" width="277"/><br/></div>
+<div>Si todo sale bien, se deberia ver una salida similar a esta:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_30.png" height="123" width="529"/><br/></div>
+<div><br/></div>
+<div>Ahora se puede ejecutar muestro primer ambiente Vagrant:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_31.png" height="75" width="549"/><br/></div>
+<div><br/></div>
+<div>El comando add descargará una box vagrant en la dirección dada.     Se agregará al sistema bajo el alias dado y se guardará en $HOME/.vagrant.</div>
+<div>Base boxes son el bloque inicial de vagrant para crear ambientes virtuales.     El segundo comando crea un vagrant file que contiene documentación de muchas opciones disponibles.     Las primeras lineas deberian ser similares a esto:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_1_2.png" height="304" width="545"/><br/></div>
+<div><br/></div>
+<div>La unica opción sin comentar es el nombre del base box desde la que se construirá el ambiente.     Este es el box ubuntu que recientemente fue añadido al sistema.     Es posible agregar una URL para especificar que base box debe ser descargada.     Si vagrant se utilizara en un equipo, esta opción es muy importante para hacer los vagrant files portables.     Si el vagrant file es utilizado por alguien que no tiene el base box en su sistema, vagrant lo descargará.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_2_1.png" height="49" width="541"/><br/></div>
+<div><br/></div>
+<div>Un box es la imagen base para crear el ambiente virtual con Vagrant.     Es un archivo portable que puede ser utilizado por otros en cualquier plataforma que soporte vagrant.</div>
+<div>Para el primer paso, esto es todo lo que se necesita.     Para levantar el box Ubuntu, se tiene que ejecutar:</div>
+<div><br/></div>
+<div>vagrant up</div>
+<div><br/></div>
+<div>Esto deberia mostrar un output similar a este:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_3.png" height="447" width="540"/><br/></div>
+<div><br/></div>
+<div>Se puede ver que vagrant primero importa y chequea la base box (ignorar el warning), setea puertos y directorios compartidos y luego bootea la maquina virtual.     El directorio con el vagrant file es montado como compartido en la maquina virtual como /vagrant.</div>
+<div>Felicitaciones!     se a creado el primer ambiente virtual con vagrant, como se puede ver en la captura 9.2, vagrant a creado un port para fordwarding desde el guest (puerto 22) al host (puerto 2222), con estos datos nos podemos logear con la cuenta por defecto de vagrant (todo box vagrant tiene usuario vagrant con el password vagrant).     La manera standar de logearse es con:</div>
+<div><br/></div>
+<div>vagrant ssh</div>
+<div><br/></div>
+<div>Con la configuración por defecto, este box no es visible desde afuera, excepto por el puerto de fordwarding.     Sin embargo, para usarlo como sistema de testing es necesario acceder a varios componentes.     Una manera de lograr esto es definiendo uno los puertos de fordwarding.     Asumamos que queremos configurar un web server disponible por el puerto 8001.     Esto seria algo así en el vagrant file:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_4_2.png" height="84" width="324"/><br/></div>
+<div><br/></div>
+<div>Para hacer este cambio visible, recargar el ambiente vagrant</div>
+<div><br/></div>
+<div>vagrant reload</div>
+<div><br/></div>
+<div>Esto apagará re rebooteará el box con la nueva configuración.     Ahora, a logearse al box, instalar Apache y la pagina de inicio del webserver será visible en http://localhost:8001</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_5_1.png" height="84" width="388"/></div>
+<div><br/></div>
+<div>Finalmente, si este ambiente ya no es necesario, se puede suspender o destruir:</div>
+<div><br/></div>
+<div>vagrant halt|suspend|destroy</div>
+<div><br/></div>
+<div>Halting y suspender mantienen el estado de la maquina virtual, si se destruye el box, todos los cambios realizados se perderán.</div>
+<div> </div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_6_1.png" height="32" width="467"/><br/></div>
+<div><br/></div>
+<div>Quizas ya pensaste que hacer forwarding del puerto de cada componente no es muy eficiente y esto es correcto.</div>
+<div>El objetivo inicial es crear ambientes similares a producción para eliminar errores de configuración de manera temprana.     No es realista pensar que que todos los servicios correrán en solo un host, por lo que es recomendable manejar varias maquinas virtuales con solo un vagrant file.     Afortunadamente Vagrant cubre esta necesidad bajo la forma de host-only networking y multi-VM-environments.</div>
+<div>Como el nombre lo indica, multi-VM-environments deja manejar muchos boxes con un vagrant file.     Si se define mas de un box en vagrant, es necesarioa gregar el nombre del box a los comandos de vagrant para diferencia que box se debe bootear, destruir, shh, etc.     </div>
+<div>La mayoria de los comandos funcionan sin nombre y pueden ser ejecutados en todos los boxes definidos en el vagrant-file.</div>
+<div>La otra caracteristica, host-only networking, permite asignar una ip estatica a la VM que solo podrá ser accedida desde el host.     Mientras no se configure netmasks separadas para los boxes, ellos tambien se pueden ver.</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_7.png" height="249" width="548"/><br/></div>
+<div><br/></div>
+<div>ejecutando el comando up se crearan 2 maquinas virtuales.     Se puede logear a ellas de esta manera:</div>
+<div><br/></div>
+<div>vagrant ssh web | db</div>
+<div><br/></div>
+<div>Ambas maquinas virtuales son alcanzables por el host bajo la ip especificada.</div>
+<div><br/></div>
+<div><br/></div>
+<div><font color="#FF3C14">Provisionamiento con Puppet</font></div>
+<div>Como ya se a cubierto lo basico, finalmente podemos ir a lo mas importante: Manejar la configuración de la infraestructura como código.     Hasta ahora, solo hemos creado maquinas virtuales.     Esto es útil pero lo que realmente buscamos es crear maquinas que contengan software y configuraciones.</div>
+<div>Como Vagrant tambien permite utilizar otras herramientas de provisionamiento (como chef) o hacer provisionamiento con scripts pero ahora nos vamos a enfocar en puppet.</div>
+<div>Volvamos al ejemplo del servidor apache que utilizamos y reescribamoslo con la ayuda de puppet.     Primero necesitamos decirle a vagrant que debe utilizar puppet para el provisionamiento y donde puede encontrar el puppet manifest, como se muestra a continuación:</div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_8.png" height="210" width="532"/><br/></div>
+<div><br/></div>
+<div>Le dijimos a vagrant que buscara el manifesto puppet en el directorio manifest y utilizar el archivo webserver.pp dentro de el.     Puppet usa lenguaje especifico para describir un sistema en forma de recursos.     Un resource puede ver cualquier cosa, texto plano, paquetes, servicios o comandos a ejecutar.     Estos recursos pueden ser agrupados en clases, modulos y definición de nodos.     Visitar la pagina de puppet para aprender mas.</div>
+<div><br/></div>
+<div>Un recurso puppet tiene esta estructura:</div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_9_1.png" height="116" width="358"/><br/></div>
+<div><br/></div>
+<div>Consiste en un tipo de recurso (archivo, paquete, etc), un nombre y una serie de atributos en la forma de pares llave-valor.</div>
+<div>Ahora veamos el manifiesto para el servidor web:</div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_10.png" height="551" width="648"/><br/></div>
+<div><br/></div>
+<div>El primer recurso indica que debe haber un grupo llamado puppet en el sistema.     Si este no es el caso, puppet creará el grupo.     El parametro ensure puede encontrarse en muchos resources para especificar el estado deseado del resource.     El siguiente resource es la ejecución de un comando para refrescar el repositorio de paquetes de ubuntu.     Los siguientes 2 recursos indican a puppet que el administrador de paquetes del sistema operativo debe instalar el paquete apache2 si aún no esta instalado y el servicio correspondiente debe estar corriendo.     El ultimo recurso altera el contenido de la pagina por defecto de apache.</div>
+<div>Se puede ver que hay ciertos resources que tienen parametros como before y require, los que son llamados metaparametros.     Indican dependencia entre resources de puppet, lo que asegura cierto orden de ejecución de los resources.     La dependencia entre el paquete y el servicio es común, esto porque el paquete tiene que estar instalado antes de ejecutar el servicio.</div>
+<div>Si se inicia esta maquina virtual, se veran mas salidas en comparación con correr vagrant sin provisionamiento.     Una vez que haya terminado, se puede ir a http://33.33.33.10 y ver la pagina de inicio modificada.</div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div>ESTO ES OPCIONAL!!!!!!!!!!!!!!!!!!!!!!!!!</div>
+<div>===============================</div>
+<div>===============================</div>
+<div><font color="#FF3C14">Utilizando vagrant para integración continua</font></div>
+<div>Como se pueden utilizar las herramientas mencionadas arriba a un ambiente continuous integration para crear ambientes de test al vuelo?     Si es usa Jenkins, ya existe un plugin.     Agrega un nuevo paso en Jenkins para ejecutar y provisionar vagrant durante un building.     Solo se usa la pagina de administración de plugins de Jenkins, luego se crea una nueva tarea y se configura como en la imagen</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/clip_11.png" height="438" width="549"/></div>
+<div><br/></div>
+<div> <img src="notas%20%22Devops%20for%20Developers%22.resources/clip_12_1.png" height="203" width="541"/></div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/136e9bad8ddb86e626b5d97b06893e7b.jpeg" height="851" width="551"/><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/582c2b1dc31ba824a85fca514434ffee.jpeg" height="50" width="540"/><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div>ACA TERMINA LO OPCIONAL!!!!</div>
+<div>===========================</div>
+<div>===========================</div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><font color="#FF3C14">Herramientas complementarias</font></div>
+<div>Que mas se puede decir de vagrant?     Hasta ahora solo usamos ubuntu como base ya que existe en la web de vagrant pero es probable que quieras utilizar otro sistema operativo para contruir tus ambientes.     Hay documentación sobre como construir nuestros propios boxes con virtualbox y empaquetarlos para uso posterior en la pagina de vagrant.     Otra opcion es revisar http://vagrantbox.es y revisar los boxes que ha construido la comunidad vagrant para descarga.</div>
+<div>Una tercera opción es usar la herramienta open source veewee, la que permite construir boxes vagrant de una manera incluso mas facil.     Desde la versión 1.0, Vagrant tambien ofrece soporte para escribir plugins.     Revisar http://vagrantup.com para mas información.</div>
+<div>Se pueden editar manifiestos y modulos puppet con un editor de texto basico, pero para tener autocompletación y otras caracteristicas es necesario usar Geppeto, el que esta basado en eclipse.     Se pueden revisar manifiestos puppet conforme a los estilos propuestos por puppet.     Otra herramienta util es guard-puppet, que ayuda a re-aplicar configuraciones puppet de manera automatica.</div>
+<div>Herramientas como cucumber-puppet y puppet-rspec ayudan a testear los manifiestos.     Permiten escribir tests para los manifiestos con la idea de asegurarse que cumplen con nuestras politicas.     Con puppet-rspec, los tests tienen la siguiente estructura:</div>
+<div><br/></div>
+<div><img src="notas%20%22Devops%20for%20Developers%22.resources/12421a1d2952f1e4f23b6063dc41d841.jpeg" height="84" width="470"/><br/></div>
+<div><br/></div>
+<div>Todas estas herramientas ayudan a aplicar test driven development (TDD) para manifiestos puppet y para agregar manifiestos a nuestro sistema de continuos integration y continuous delivery.</div>
+<div><br/></div>
+<div><br/></div>
+<div><font color="#FF2807">Conclusión</font></div>
+<div>Vimos los beneficios de usar puppet par administrar ambientes virtuales con vagrant.     Esto es muy util aunque puppet puede realizar mucho mas.     De hecho puede administrar cualquier tipo de ambiente, tanto desarrollo como producción.     Revisemos como un puppet server almacena las configuraciones de todos los nodos  de manera centralizada y distribuye las configuraciones segun lo necesitado.</div>
+<div><br/></div>
+<div>Esto es solo la superficie de las posibilidades que entregan las herramientas mencionadas.     Hay mucho mas por descubrir y hay otras herramientas no mencionadas acá que pueden potenciar notablemente nuestro pipeline devops.</div>
+<div><br/></div>
+<div>Con configuration management e IaaS, la colaboración entre devs y ops no es una posibilidad, si no una necesidad.     Despues de todo, todo dev necesita saber un minimo de sysadmin y todo sysdamin debe entender por que dev a seleccionado cierta arquitectura para ejecutar la aplicación.     Las herramientas descritas aqui pueden mejorar de manera dramatica la distribución del conocimiento entre los 2 grupos y ayudar a que el movimiento devops sea incluso mas exitoso.</div>
+<div>Luego de aprender lo basico de devops, hemos revisado las 3 perspecivas de devops: metricas y estadisticas, procesos y perspectiva tecnica.</div>
+<div>Devops ayuda a crear puentes entre devs y ops y encamina el proceso global de delivery de software.     Con devops, aumentar el flujo de caracteristicas reduciendo el tiempo y cantidad de tareas concurrentes, nos trae importantes mejoras al automatizar el proceso de deployment.</div>
+<div>Sobre todo lo anterior, aplicar devops requiere un cambio de mentalidad, esto es basico para contruir un equipo devops alineado con incentivos compartidos.</div>
+<div>Hay diferentes maneras de implementar devops y como extender o embeber un equipo a otro.     Usando un enfoque como kanban puede ser una excelente elección para visualizar y simplificar el proceso de delivery.</div>
+<div>Otra area de interes relacionada con procesos es la creación y mantención de conceptos.     Un ejemplo de concepto son los requerimientos no funcionales que son importantes tanto para devs como para ops.     El deficit de conceptos debe ser evitado y visualizado tempranamente.     Tipicamente aparecen por la objetividad limitada en ambientes complejos y dinamicos, mas conocido como riesgo moral.     Recetas para detectar y minimizar el deficit conceptual es fomentar la trazabilidad, checkear reqeurimientos no funcionales y alinear objetivos.</div>
+<div>Procesos deberian ser implementados con herramientas.     Integrar la herramienta apropiada es importante para devops.     La mayor parte del proceso de liberación deberia ser automatizado.     Patrones importantes son el delibery pipeline, baseline, shared version numbers, automatic versioning and release containers.</div>
+<div>Un release container consiste de distintos artefactos como codigo fuente, scripts, database, IaaC y testing.</div>
+<div>Todos estos aspectos han sido cubiertos por lo que deberias estar listo para comenzar con devops!     </div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+</div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+</div>
+<div style="text-align: left;"><font color="#170202"><br/></font></div>
+<div style="text-align: left;"><font color="#170202"><br/></font></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div> </div>
+</div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div> <br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div>  </div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><font color="#0A0001"><br/></font></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+ <br/></div>
+</div>
+<div><br/></div>
+</div>
+<div style="text-align: center;"><span style="color: rgb(255, 0, 0);"><strong><br clear="none"/></strong></span></div>
+<div><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+</div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div style="text-align: left;"><span style="color: rgb(0, 0, 0);"><br clear="none"/></span></div>
+<div><span style="font-size: 14px;"><br clear="none"/></span></div>
+</div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+</div>
+</div>
+<div><br clear="none"/></div>
+</div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+<div><br clear="none"/></div>
+</body></html>
